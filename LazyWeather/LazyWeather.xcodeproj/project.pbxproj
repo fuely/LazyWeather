@@ -496,6 +496,7 @@
 				935F309C1CD45B12000566B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		935F309D1CD45B12000566B5 /* Build configuration list for PBXNativeTarget "LazyWeatherTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +505,7 @@
 				935F309F1CD45B12000566B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		935F30A01CD45B12000566B5 /* Build configuration list for PBXNativeTarget "LazyWeatherUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +514,7 @@
 				935F30A21CD45B12000566B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
