@@ -9,6 +9,9 @@
 #import "ViewController.h"
 
 @interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@property (weak, nonatomic) IBOutlet UIToolbar *ToolBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *BarItem2;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *BarItem1;
 @property (weak, nonatomic) IBOutlet UICollectionView *mCollectionView;
 @end
 
@@ -24,6 +27,10 @@
     _mCollectionView.delegate = self;
     _mCollectionView.dataSource = self;
     cellcolor= [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:0.5];
+    _BarItem1.title = @"05.02/周一";
+    //_BarItem1.tintColor = [UIColor whiteColor];
+    _BarItem2.title = @"厦门";
+    _BarItem2.tintColor = [UIColor whiteColor];
     
     // Do any additional setup after loading the view, typically from a nib.
 }

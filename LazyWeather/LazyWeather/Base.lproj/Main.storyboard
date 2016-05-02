@@ -39,6 +39,24 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFK-2i-ynx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem image="category_hover" width="16" id="mrt-1N-oJk">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </barButtonItem>
+                                    <barButtonItem tag="1" title="Item" width="192" id="0ut-8K-VxT">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </barButtonItem>
+                                    <barButtonItem image="share_small_hover" width="31" id="JKO-6L-TYd">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </barButtonItem>
+                                    <barButtonItem tag="2" title="Item" width="40" id="siP-eR-VwW"/>
+                                    <barButtonItem image="settings_hover" width="22" id="qg3-Rq-F6N">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -50,6 +68,9 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="BarItem1" destination="0ut-8K-VxT" id="lvF-zz-5pV"/>
+                        <outlet property="BarItem2" destination="siP-eR-VwW" id="eKA-Zw-3OH"/>
+                        <outlet property="ToolBar" destination="IFK-2i-ynx" id="xWx-ij-hI5"/>
                         <outlet property="mCollectionView" destination="vmf-2j-VCR" id="HrN-uv-wSW"/>
                     </connections>
                 </viewController>
@@ -58,4 +79,9 @@
             <point key="canvasLocation" x="229.5" y="339.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="category_hover" width="15" height="15"/>
+        <image name="settings_hover" width="15" height="15"/>
+        <image name="share_small_hover" width="20" height="20"/>
+    </resources>
 </document>
