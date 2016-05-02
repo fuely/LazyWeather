@@ -6,28 +6,56 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Left View Table View Controller-->
+        <scene sceneID="YXp-Ni-21h">
+            <objects>
+                <tableViewController storyboardIdentifier="leftView" id="dNw-9l-ZEH" customClass="LeftViewTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZJz-JW-pXe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Gwq-wt-sLb" customClass="LeftViewTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gwq-wt-sLb" id="JJw-UF-eqm">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dNw-9l-ZEH" id="H8j-tl-fjK"/>
+                            <outlet property="delegate" destination="dNw-9l-ZEH" id="3Ps-Cb-Qbx"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="99t-QZ-e8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-920" y="101"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="centerView" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vmf-2j-VCR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="zC8-7J-uXF">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JTl-Oc-fvB">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zQx-Vo-eUS">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="oneCell" id="ZlA-6a-19r">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="rRA-lw-umP">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -35,53 +63,54 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFK-2i-ynx">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem image="category_hover" width="16" id="mrt-1N-oJk">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                    <barButtonItem tag="1" title="Item" width="192" id="0ut-8K-VxT">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                    <barButtonItem image="share_small_hover" width="31" id="JKO-6L-TYd">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                    <barButtonItem tag="2" title="Item" width="40" id="siP-eR-VwW"/>
-                                    <barButtonItem image="settings_hover" width="22" id="qg3-Rq-F6N">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="vmf-2j-VCR" secondAttribute="trailing" constant="-20" id="AYH-6g-6ra"/>
-                            <constraint firstItem="vmf-2j-VCR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="K9q-8C-zOc"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vmf-2j-VCR" secondAttribute="bottom" id="TRF-dF-lnv"/>
-                            <constraint firstItem="vmf-2j-VCR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="olv-U5-oXG"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JTl-Oc-fvB" secondAttribute="bottom" id="09y-Wb-eiv"/>
+                            <constraint firstItem="JTl-Oc-fvB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="LbI-bm-qi8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JTl-Oc-fvB" secondAttribute="trailing" constant="-20" id="ZfF-og-kdH"/>
+                            <constraint firstItem="JTl-Oc-fvB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="pwM-Of-EXS"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <keyCommands/>
                     <connections>
-                        <outlet property="BarItem1" destination="0ut-8K-VxT" id="lvF-zz-5pV"/>
-                        <outlet property="BarItem2" destination="siP-eR-VwW" id="eKA-Zw-3OH"/>
-                        <outlet property="ToolBar" destination="IFK-2i-ynx" id="xWx-ij-hI5"/>
-                        <outlet property="mCollectionView" destination="vmf-2j-VCR" id="HrN-uv-wSW"/>
+                        <outlet property="mCenterCollectionCtr" destination="JTl-Oc-fvB" id="X0l-CD-Adt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="229.5" y="339.5"/>
+            <point key="canvasLocation" x="-64" y="101"/>
+        </scene>
+        <!--Right View Table View Controller-->
+        <scene sceneID="mgG-yp-c1O">
+            <objects>
+                <tableViewController storyboardIdentifier="rightView" id="kNq-qY-LOz" customClass="RightViewTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rld-iF-Ce3" userLabel="Right Table View">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6nU-jn-Jbc" customClass="RightViewTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6nU-jn-Jbc" id="zSx-kU-0dT">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kNq-qY-LOz" id="tn9-40-nWV"/>
+                            <outlet property="delegate" destination="kNq-qY-LOz" id="Kc6-Uc-ORv"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PTs-2T-Bok" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="758" y="101"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="category_hover" width="15" height="15"/>
-        <image name="settings_hover" width="15" height="15"/>
-        <image name="share_small_hover" width="20" height="20"/>
-    </resources>
 </document>

@@ -18,16 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="W4X-qh-uMK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="bwy-5o-O3x">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="W4X-qh-uMK" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="G8Y-sS-YGA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="W4X-qh-uMK" secondAttribute="trailing" id="X4p-vT-r9G"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="W4X-qh-uMK" secondAttribute="bottom" id="cvI-79-KD6"/>
-                            <constraint firstItem="W4X-qh-uMK" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="q1F-Es-fo2"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="bwy-5o-O3x" secondAttribute="bottom" id="8Ii-hL-8e5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bwy-5o-O3x" secondAttribute="trailing" constant="-20" id="9CJ-7W-aIw"/>
+                            <constraint firstItem="bwy-5o-O3x" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="Hfy-fh-dS7"/>
+                            <constraint firstItem="bwy-5o-O3x" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="f95-GJ-LE3"/>
                         </constraints>
                     </view>
                 </viewController>

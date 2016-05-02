@@ -2,37 +2,58 @@
 //  ViewController.m
 //  LazyWeather
 //
-//  Created by 傅韩建 on 16/4/30.
+//  Created by 傅韩建 on 16/5/2.
 //  Copyright © 2016年 HanJian-F. All rights reserved.
 //
 
 #import "ViewController.h"
+#import "FirstCollectionCell.h"
+#import "LeftViewTableViewController.h"
+#import "RightTableViewController.h"
 
-@interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
-@property (weak, nonatomic) IBOutlet UIToolbar *ToolBar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *BarItem2;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *BarItem1;
-@property (weak, nonatomic) IBOutlet UICollectionView *mCollectionView;
+@interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@property (weak, nonatomic) IBOutlet UICollectionView *mCenterCollectionCtr;
+
 @end
+
 
 @implementation ViewController
 {
-    UIImageView* heartView;
-    UIColor* cellcolor;
+    CGFloat pianyi;
+    UITapGestureRecognizer *gesture2;
+    UIView* blackview;
 }
 
+static NSString * const reuseIdentifier = @"FirstCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _mCollectionView.delegate = self;
-    _mCollectionView.dataSource = self;
-    cellcolor= [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:0.5];
-    _BarItem1.title = @"05.02/周一";
-    //_BarItem1.tintColor = [UIColor whiteColor];
-    _BarItem2.title = @"厦门";
-    _BarItem2.tintColor = [UIColor whiteColor];
     
-    // Do any additional setup after loading the view, typically from a nib.
+    //设置_mCenterCollectionCtr代理,加载cell
+    _mCenterCollectionCtr.delegate = self;
+    _mCenterCollectionCtr.dataSource = self;
+    [_mCenterCollectionCtr registerClass:[FirstCollectionCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    
+    //
+    
+    //滑动手势初始化设置
+    UIPanGestureRecognizer *gesture1 = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(gestures1:)];
+    [self.view addGestureRecognizer:gesture1];
+    //    self.collectionview1.userInteractionEnabled=NO;
+    
+    //点击手势初始化设置
+    gesture2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gestures2:)];
+    [_mCenterCollectionCtr addGestureRecognizer:gesture2];
+    [gesture2 setEnabled:NO];
+    //添加左右页面
+    self.leftDrawerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftView"];
+    self.leftDrawerViewController.view.frame = CGRectMake(-40, 0, 375, 667);
+    [self.view insertSubview:self.leftDrawerViewController.view belowSubview:_mCenterCollectionCtr];
+    self.rightDrawerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rightView"];
+    self.rightDrawerViewController.view.frame = CGRectMake(80, 0, 375, 667);
+    [self.view insertSubview:self.rightDrawerViewController.view belowSubview:_mCenterCollectionCtr];
+
+
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -44,129 +65,97 @@
     return 2;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"oneCell" forIndexPath:indexPath];
-    switch (indexPath.row) {
-        case 0:
-        {
-            UILabel* weatherText = [[UILabel alloc]init];
-            weatherText.text =@"今天下雨";
-            UIImageView* weatherView = [[UIImageView alloc]initWithFrame:CGRectMake(90.5, 145, 194, 194)];
-            if([weatherText.text isEqual: @"今天下雨"]){
-                weatherView.image = [UIImage imageNamed:@"oyzy_normal"];
-                collectionView.backgroundColor = [UIColor cyanColor];
-                collectionView.backgroundView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"rainy"]];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    FirstCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor redColor];
+    
+    return cell;
+}
 
+
+//----------------------
+//点击事件
+-(void)gestures2:(UITapGestureRecognizer *)gesture
+{
+    [self translation:0];
+    pianyi = 0.0f;
+    [gesture setEnabled:NO];
+}
+
+//滑动页面事件具体实现
+-(void)gestures1:(UIPanGestureRecognizer *)gesture
+{
+    if(gesture.state == UIGestureRecognizerStateBegan){
+        if(pianyi == 0){
+            if([gesture translationInView:gesture.view].x > 0)
+                [self.rightDrawerViewController.view setHidden:YES];
+            if([gesture translationInView:gesture.view].x < 0)
+                [self.rightDrawerViewController.view setHidden:NO];
+        }
+    }
+    
+    if(gesture.state == UIGestureRecognizerStateChanged){
+        if(pianyi + [gesture translationInView:gesture.view].x > 0)
+            [self.rightDrawerViewController.view setHidden:YES];
+        if(pianyi + [gesture translationInView:gesture.view].x < 0)
+            [self.rightDrawerViewController.view setHidden:NO];
+        _mCenterCollectionCtr.transform = CGAffineTransformMakeTranslation(pianyi+[gesture translationInView:gesture.view].x,0);
+        blackview.transform = CGAffineTransformMakeTranslation(pianyi+[gesture translationInView:gesture.view].x,0);
+    }
+    if(gesture.state == UIGestureRecognizerStateEnded){
+        if(pianyi == 0){
+            if([gesture translationInView:gesture.view].x > 0){
+                [self translation:240];
+                pianyi = 240;
+                [gesture2 setEnabled:YES];
             }
-            cell.backgroundColor = cellcolor;
-            [cell addSubview:weatherView];
-            
-            heartView = [[UIImageView alloc]initWithFrame:CGRectMake(284, 135,25,25)];
-            heartView.image = [UIImage imageNamed:@"heart"];
-            [self minHeart];
-            [cell addSubview:heartView];
+            else{
+                [self translation:-240];
+                pianyi = -240;
+                [gesture2 setEnabled:YES];
+            }
         }
-            break;
-        case 1:
-        {
-            cell.backgroundColor = cellcolor;
-            UIImageView* weatherImg = [[UIImageView alloc]initWithFrame:CGRectMake(60, 60, 90, 90)];
-            weatherImg.image = [UIImage imageNamed:@"w0"];
-            UILabel* weatherLb = [[UILabel alloc]initWithFrame:CGRectMake(65, 150, 80, 30)];
-            weatherLb.text = @"阵雨";
-            weatherLb.textColor = [UIColor whiteColor];
-            weatherLb.textAlignment = NSTextAlignmentCenter;
-            [cell addSubview:weatherLb];
-            [cell addSubview:weatherImg];
-    
-            UIImageView* temperatureImg = [[UIImageView alloc]initWithFrame:CGRectMake(225, 60, 90, 90)];
-            temperatureImg.image = [UIImage imageNamed:@"w0"];
-            UILabel* temperatureLb = [[UILabel alloc]initWithFrame:CGRectMake(230, 150, 80, 30)];
-            temperatureLb.text = @"20~23°";
-            temperatureLb.textColor = [UIColor whiteColor];
-            temperatureLb.textAlignment = NSTextAlignmentCenter;
-            [cell addSubview:temperatureLb];
-            [cell addSubview:temperatureImg];
-            
-            UIImageView* pmImg = [[UIImageView alloc]initWithFrame:CGRectMake(60, 220, 90, 90)];
-            pmImg.image = [UIImage imageNamed:@"pm25_1"];
-            UILabel* pmLb = [[UILabel alloc]initWithFrame:CGRectMake(65, 300, 80, 30)];
-            pmLb.text = @"空气 优";
-            pmLb.textColor = [UIColor whiteColor];
-            pmLb.textAlignment = NSTextAlignmentCenter;
-            [cell addSubview:pmLb];
-            [cell addSubview:pmImg];
-            
-            UIImageView* addImg = [[UIImageView alloc]initWithFrame:CGRectMake(225, 220, 90, 90)];
-            addImg.image = [UIImage imageNamed:@"add_element"];
-            UILabel* addLb = [[UILabel alloc]initWithFrame:CGRectMake(230, 300, 80, 30)];
-            addLb.text = @"添加更多";
-            addLb.textColor = [UIColor whiteColor];
-            addLb.textAlignment = NSTextAlignmentCenter;
-            [cell addSubview:addLb];
-            [cell addSubview:addImg];
-
+        
+        if(pianyi == 240){
+            if([gesture translationInView:gesture.view].x > 0){
+                [self translation:240];
+                pianyi = 240;
+                [gesture2 setEnabled:YES];
+            }
+            else{
+                [self translation:0];
+                pianyi = 0;
+                [gesture2 setEnabled:NO];
+            }
         }
-            break;
-        default:
-            break;
+        
+        if(pianyi == -240){
+            if([gesture translationInView:gesture.view].x > 0){
+                [self translation:0];
+                pianyi = 0;
+                [gesture2 setEnabled:NO];
+            }
+            else{
+                [self translation:-240];
+                pianyi = -240;
+                [gesture2 setEnabled:YES];
+            }
+        }
+        
+        
     }
-    return  cell;
 }
 
-//小图标爱心动画
-- (void)minHeart
+//动画实现
+-(void)translation:(CGFloat)x
 {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    heartView.frame = CGRectMake(284, 135,25,25);
+    NSTimeInterval animationDuration=0.30f;
+    [UIView beginAnimations:@"moveview" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    _mCenterCollectionCtr.transform = CGAffineTransformMakeTranslation(x, 0);
     [UIView commitAnimations];
-    [self performSelector:@selector(maxHeart) withObject:nil afterDelay:1.5];
-}
-- (void)maxHeart
-{
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    heartView.frame = CGRectMake(284, 135,30,30);
-    [UIView commitAnimations];
-    [self performSelector:@selector(minHeart) withObject:nil afterDelay:0.3];
-}
-#pragma mark - UICollectionViewDelegate
-
-#pragma mark - UICollectionViewDelegateFlowLayout
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGSize size;
-    switch (indexPath.row) {
-        case 0:
-            size = CGSizeMake(375, 450);
-            break;
-        case 1:
-            size = CGSizeMake(375, 400);
-            break;
-        default:
-            size = CGSizeMake(0, 0);
-            break;
-    }
-    
-    return size;
     
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(0, 0, 0, 0);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 0.0;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 0.0;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

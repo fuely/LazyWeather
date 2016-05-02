@@ -82,12 +82,3 @@ strip_invalid_archs() {
   fi
 }
 
-
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods/AFNetworking.framework"
-  install_framework "Pods/JVFloatingDrawer.framework"
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods/AFNetworking.framework"
-  install_framework "Pods/JVFloatingDrawer.framework"
-fi
