@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface FirstCollectionCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIToolbar *centerToolBar;
+@property (weak, nonatomic) IBOutlet UIImageView *centerImg;
+@property (nonatomic,strong) UIImageView *heartImg;
 
 @end

@@ -48,7 +48,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JTl-Oc-fvB">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zQx-Vo-eUS">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="zQx-Vo-eUS">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -71,8 +71,12 @@
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JTl-Oc-fvB" secondAttribute="bottom" id="09y-Wb-eiv"/>
                             <constraint firstItem="JTl-Oc-fvB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="LbI-bm-qi8"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="JTl-Oc-fvB" secondAttribute="trailing" constant="-20" id="ZfF-og-kdH"/>
-                            <constraint firstItem="JTl-Oc-fvB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="pwM-Of-EXS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JTl-Oc-fvB" secondAttribute="trailing" constant="-20" id="ZfF-og-kdH">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-17"/>
+                            </constraint>
+                            <constraint firstItem="JTl-Oc-fvB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="pwM-Of-EXS">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-17"/>
+                            </constraint>
                         </constraints>
                     </view>
                     <keyCommands/>
@@ -82,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-64" y="101"/>
+            <point key="canvasLocation" x="-64.5" y="100.5"/>
         </scene>
         <!--Right View Table View Controller-->
         <scene sceneID="mgG-yp-c1O">
