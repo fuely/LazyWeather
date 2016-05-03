@@ -11,6 +11,6 @@
 @interface FirstCollectionCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIToolbar *centerToolBar;
 @property (weak, nonatomic) IBOutlet UIImageView *centerImg;
-@property (nonatomic,strong) UIImageView *heartImg;
+@property (nonatomic,strong) UIButton *heartBtn;
 
 @end

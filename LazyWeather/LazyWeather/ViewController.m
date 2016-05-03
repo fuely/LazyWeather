@@ -8,11 +8,13 @@
 
 #import "ViewController.h"
 #import "FirstCollectionCell.h"
+#import "SecondCollectionCell.h"
+#import "ThirdCollectionCell.h"
 #import "LeftViewTableViewController.h"
 #import "RightTableViewController.h"
 
-@interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
-@property (weak, nonatomic) IBOutlet UICollectionView *mCenterCollectionCtr;
+@interface ViewController ()
+
 
 
 @end
@@ -22,6 +24,7 @@
 {
     CGFloat pianyi;
     UITapGestureRecognizer *gesture2;
+    UIButton *heartBtn;
 }
 
 static NSString * const reuseIdentifier = @"FirstCell";
@@ -29,10 +32,10 @@ static NSString * const reuseIdentifier = @"FirstCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     //设置_mCenterCollectionCtr代理,加载cell
     _mCenterCollectionCtr.delegate = self;
     _mCenterCollectionCtr.dataSource = self;
+    _mCenterCollectionCtr.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"rainy"]];
     
     //左右页面初始化
     [self addLeftViewwithRightView];
@@ -48,37 +51,43 @@ static NSString * const reuseIdentifier = @"FirstCell";
 }
 //定义展示的cell个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 1;
+    return 3;
 }
 //每个UICollectionView展示的内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     //注册cell与Xib
     [_mCenterCollectionCtr registerClass:[FirstCollectionCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [_mCenterCollectionCtr registerClass:[SecondCollectionCell class] forCellWithReuseIdentifier:@"SecondCell"];
+    [_mCenterCollectionCtr registerClass:[ThirdCollectionCell class] forCellWithReuseIdentifier:@"ThirdCell"];
+    
     UINib *nib = [UINib nibWithNibName:@"FirstCollectionCell"
                                 bundle: [NSBundle mainBundle]];
     [collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
+    
     //实例化cell
     UICollectionViewCell *cell = [[UICollectionViewCell alloc]init];
     FirstCollectionCell *firstCell =[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    SecondCollectionCell *secondCell =[collectionView dequeueReusableCellWithReuseIdentifier:@"SecondCell" forIndexPath:indexPath];
+    ThirdCollectionCell *thirdCell =[collectionView dequeueReusableCellWithReuseIdentifier:@"ThirdCell" forIndexPath:indexPath];
     
     switch (indexPath.row) {
         case 0:
         {
-            _mCenterCollectionCtr.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"rainy"]];
-            firstCell.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:0.5];
-            firstCell.centerImg.image = [UIImage imageNamed:@"bxlx_normal"];
-            firstCell.centerToolBar.items[1].title = @"05.02/周一";
-            firstCell.centerToolBar.items[1].tintColor = [UIColor whiteColor];
-            firstCell.centerToolBar.items[3].title = @"厦门";
-            firstCell.centerToolBar.items[3].tintColor = [UIColor whiteColor];
-            firstCell.heartImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"heart"]];
-            firstCell.heartImg.center = CGPointMake(285, 167);
-            [firstCell addSubview:firstCell.heartImg];
             cell = firstCell;
         
         }
             break;
-            
+        case 1:
+        {
+            cell = secondCell;
+        }
+            break;
+        case 2:
+        {
+            cell = thirdCell;
+        }
+            break;
         default:
             break;
     }
@@ -92,13 +101,13 @@ static NSString * const reuseIdentifier = @"FirstCell";
     CGSize size;
     switch (indexPath.row) {
         case 0:
-            size = CGSizeMake(375, 1334);
+            size = CGSizeMake(375, 875);
             break;
         case 1:
-            size = CGSizeMake(375, 400);
+            size = CGSizeMake(375, 667);
             break;
         default:
-            size = CGSizeMake(0, 0);
+            size = CGSizeMake(375, 667);
             break;
     }
     
@@ -117,9 +126,6 @@ static NSString * const reuseIdentifier = @"FirstCell";
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return 0.0;
 }
-
-
-
 
 #pragma mark - 滑动页面事件
 - (void)addLeftViewwithRightView

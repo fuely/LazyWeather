@@ -22,6 +22,8 @@
 		933B72E51CD72BC0007219FB /* RightViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 933B72E41CD72BC0007219FB /* RightViewTableViewController.m */; };
 		933B72E91CD73192007219FB /* FirstCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 933B72E71CD73192007219FB /* FirstCollectionCell.m */; };
 		933B72EA1CD73192007219FB /* FirstCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933B72E81CD73192007219FB /* FirstCollectionCell.xib */; };
+		933B72ED1CD88D7C007219FB /* SecondCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 933B72EC1CD88D7C007219FB /* SecondCollectionCell.m */; };
+		933B72F01CD8E451007219FB /* ThirdCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 933B72EF1CD8E451007219FB /* ThirdCollectionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,10 @@
 		933B72E61CD73192007219FB /* FirstCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstCollectionCell.h; sourceTree = "<group>"; };
 		933B72E71CD73192007219FB /* FirstCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstCollectionCell.m; sourceTree = "<group>"; };
 		933B72E81CD73192007219FB /* FirstCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstCollectionCell.xib; sourceTree = "<group>"; };
+		933B72EB1CD88D7C007219FB /* SecondCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondCollectionCell.h; sourceTree = "<group>"; };
+		933B72EC1CD88D7C007219FB /* SecondCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondCollectionCell.m; sourceTree = "<group>"; };
+		933B72EE1CD8E451007219FB /* ThirdCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdCollectionCell.h; sourceTree = "<group>"; };
+		933B72EF1CD8E451007219FB /* ThirdCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdCollectionCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +196,10 @@
 				933B72E61CD73192007219FB /* FirstCollectionCell.h */,
 				933B72E71CD73192007219FB /* FirstCollectionCell.m */,
 				933B72E81CD73192007219FB /* FirstCollectionCell.xib */,
+				933B72EB1CD88D7C007219FB /* SecondCollectionCell.h */,
+				933B72EC1CD88D7C007219FB /* SecondCollectionCell.m */,
+				933B72EE1CD8E451007219FB /* ThirdCollectionCell.h */,
+				933B72EF1CD8E451007219FB /* ThirdCollectionCell.m */,
 			);
 			name = CenterView;
 			sourceTree = "<group>";
@@ -399,9 +409,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				933B72DF1CD72B92007219FB /* LeftViewTableViewCell.m in Sources */,
+				933B72F01CD8E451007219FB /* ThirdCollectionCell.m in Sources */,
 				933B72E51CD72BC0007219FB /* RightViewTableViewController.m in Sources */,
 				933B72A61CD72739007219FB /* ViewController.m in Sources */,
 				933B72A31CD72739007219FB /* AppDelegate.m in Sources */,
+				933B72ED1CD88D7C007219FB /* SecondCollectionCell.m in Sources */,
 				933B72E91CD73192007219FB /* FirstCollectionCell.m in Sources */,
 				933B72D91CD72B4C007219FB /* LeftViewTableViewController.m in Sources */,
 				933B72A01CD72739007219FB /* main.m in Sources */,

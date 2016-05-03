@@ -81,7 +81,7 @@
                     </view>
                     <keyCommands/>
                     <connections>
-                        <outlet property="mCenterCollectionCtr" destination="JTl-Oc-fvB" id="X0l-CD-Adt"/>
+                        <outlet property="mCenterCollectionCtr" destination="JTl-Oc-fvB" id="15S-TT-Hbx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
