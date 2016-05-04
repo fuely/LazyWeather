@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LeftViewTableViewController.h"
+#import "RightTableViewController.h"
 
 @interface ViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *mCenterCollectionCtr;
 
-@property (nonatomic, strong) UITableViewController *leftDrawerViewController;
-@property (nonatomic, strong) UITableViewController *rightDrawerViewController;
+@property (nonatomic, strong) LeftViewTableViewController *leftDrawerViewController;
+@property (nonatomic, strong) RightTableViewController *rightDrawerViewController;
 @property (nonatomic, strong) UICollectionViewController *collectionView;
 
 

@@ -8,7 +8,6 @@
 
 #import "RightViewTableViewController.h"
 #import "RightViewTableViewCell.h"
-#import "AppDelegate.h"
 
 @interface RightViewTableViewController ()
 
@@ -16,15 +15,23 @@
 @end
 
 @implementation RightViewTableViewController
+{
+    NSArray *text1Array;
+    NSArray *text2Array;
+    NSArray *img1Array;
+    NSArray *img2Array;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    text1Array = [[NSArray alloc]initWithObjects:@"提醒",@"设置",@"支持", nil];
+    text2Array = [[NSArray alloc]initWithObjects:@"添加",@"定位",@"城市", nil];
+    img1Array = [[NSArray alloc]initWithObjects:@"reminder",@"settings_normal",@"contact", nil];
+    img2Array = [[NSArray alloc]initWithObjects:@"addcity",@"location_icon",@"city", nil];
+    self.view.backgroundColor = [UIColor blackColor];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,24 +42,46 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return 3;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    RightViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RightCell" forIndexPath:indexPath];
+    if(indexPath.section == 0){
+        cell.lbText.text = text1Array[indexPath.row];
+        cell.imgView.image = [UIImage imageNamed:img1Array[indexPath.row]];
+    }
+    else{
+            cell.lbText.text = text2Array[indexPath.row];
+            cell.imgView.image = [UIImage imageNamed:img2Array[indexPath.row]];
+        }
+    cell.lbText.textColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor blackColor];
     return cell;
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60.0f;
+}
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    
+    if(section == 1)
+    {
+        return @"                                 城市管理";
+    }
+    else
+        return nil;
+}
+
 
 /*
 // Override to support conditional editing of the table view.

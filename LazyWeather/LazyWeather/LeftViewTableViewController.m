@@ -8,22 +8,34 @@
 
 #import "LeftViewTableViewController.h"
 #import "LeftViewTableViewCell.h"
-#import "AppDelegate.h"
 
 @interface LeftViewTableViewController ()
 
 @end
 
 @implementation LeftViewTableViewController
+{
+    NSArray *weekdays;
+    NSArray *days;
+    NSArray *weathers;
+    NSArray *temperatures;
+    
+    UIColor *Color1;
+    UIColor *Color2;
+    UIColor *Color3;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    weekdays = [[NSArray alloc]initWithObjects:@"昨天",@"今天",@"明天",@"周五",@"周六",@"周日", nil];
+    days = [[NSArray alloc]initWithObjects:@"05/03",@"05/04",@"05/05",@"05/06",@"05/07",@"05/08", nil];
+    weathers = [[NSArray alloc]initWithObjects:@"阴",@"阴",@"多云",@"晴",@"多云",@"多云", nil];
+    temperatures = [[NSArray alloc]initWithObjects:@"21~28°",@"22~29°",@"22~31°",@"22~28°",@"23~30°",@"23~28°", nil];
+    self.view.backgroundColor = [UIColor blackColor];
+    [self initColor];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,23 +47,89 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0;
+    return 6;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    LeftViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeftCell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor clearColor];
+    cell.lbweek.text = weekdays[indexPath.row];
+    cell.lbweek.font = [UIFont boldSystemFontOfSize:17];
+    cell.lbdays.text = days[indexPath.row];
+    cell.lbweather.text = weathers[indexPath.row];
+    cell.lbweather.font = [UIFont boldSystemFontOfSize:20];
+    cell.lbtemperature.text = temperatures[indexPath.row];
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(168, 21.8, 100, 80)];
+    imgView.layer.masksToBounds = YES;
+    imgView.layer.cornerRadius = 20;
+    [cell.contentView insertSubview:imgView atIndex:0];
+    NSString *weatherColor = [self wenzichuli:weathers[indexPath.row]];
+    if ([weatherColor isEqual: @"晴"])
+        imgView.image = [self createImageWithColor:Color1];
+    if ([weatherColor isEqual: @"多云"])
+        imgView.image = [self createImageWithColor:Color2];
+    if ([weatherColor rangeOfString:@"阴"].location != NSNotFound)
+        imgView.image = [self createImageWithColor:Color3];
     return cell;
 }
-*/
+
+//将UIColor转化为UIIamge
+- (UIImage*) createImageWithColor: (UIColor*) color
+
+{
+    
+    CGRect rect=CGRectMake(0, 0, 1, 1);
+    
+    UIGraphicsBeginImageContext(rect.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    
+    CGContextFillRect(context, rect);
+    
+    
+    UIImage *senderImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return senderImage;
+    
+}
+//初始化颜色
+-(void)initColor
+{
+    Color1= [UIColor colorWithRed:0.0/255 green:200.0/255 blue:230.0/255 alpha:1];
+    Color2= [UIColor colorWithRed:0.0/255 green:190.0/255 blue:200.0/255 alpha:1];
+    Color3= [UIColor colorWithRed:0.0/255 green:128.0/255 blue:130.0/255 alpha:1];
+}
+//文字处理
+-(NSString *)wenzichuli:(NSString *)string
+{
+    if([string rangeOfString:@"转"].location != NSNotFound){
+        NSRange range = [string rangeOfString:@"转"];
+        NSString *aaaa = [string substringFromIndex:range.location+1];
+        NSString *cccc = [NSString stringWithFormat:@"%@",aaaa];
+        return cccc;
+    }
+    else{
+        NSString *cccc = [NSString stringWithFormat:@"%@",string];
+        return cccc;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 130.0f;
+}
+
+
 
 /*
 // Override to support conditional editing of the table view.

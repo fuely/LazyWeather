@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface RightViewTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbText;
 
 @end

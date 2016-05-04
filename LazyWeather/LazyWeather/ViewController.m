@@ -10,8 +10,6 @@
 #import "FirstCollectionCell.h"
 #import "SecondCollectionCell.h"
 #import "ThirdCollectionCell.h"
-#import "LeftViewTableViewController.h"
-#import "RightTableViewController.h"
 
 @interface ViewController ()
 
