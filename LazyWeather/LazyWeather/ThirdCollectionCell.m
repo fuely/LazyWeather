@@ -29,8 +29,13 @@
         
         _btnView = [[UIButton alloc]initWithFrame:CGRectMake(40, 100, 275, 80)];
         _imgClock = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 90, 90)];
-        _lbClock = [[UILabel alloc]initWithFrame:CGRectMake(25, 25, 60, 40)];
-        _lbClock.text= @"22点";
+        _lbClock = [[UILabel alloc]initWithFrame:CGRectMake(16, 25, 60, 40)];
+        
+        NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"HH"];
+        NSString *currentTime = [formatter stringFromDate:[NSDate date]];
+        _lbClock.text= currentTime;
+        _lbClock.textAlignment = NSTextAlignmentCenter;
         _lbClock.textColor = [UIColor whiteColor];
         _imgClock.image = [UIImage imageNamed:@"volumepoint"];
         [_imgClock addSubview:_lbClock];

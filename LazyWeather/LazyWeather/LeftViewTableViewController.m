@@ -8,6 +8,7 @@
 
 #import "LeftViewTableViewController.h"
 #import "LeftViewTableViewCell.h"
+#import "WeatherDelegate.h"
 
 @interface LeftViewTableViewController ()
 
@@ -20,18 +21,33 @@
     NSArray *weathers;
     NSArray *temperatures;
     
-    UIColor *Color1;
-    UIColor *Color2;
-    UIColor *Color3;
+    UIColor *color1;
+    UIColor *color2;
+    UIColor *color3;
+    UIColor *color4;
+    WeatherDelegate *weatherDelegate;
+    NSMutableArray *dicDay;
+    NSMutableArray *strWeather;
+    NSMutableArray *temp;
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    weekdays = [[NSArray alloc]initWithObjects:@"昨天",@"今天",@"明天",@"周五",@"周六",@"周日", nil];
-    days = [[NSArray alloc]initWithObjects:@"05/03",@"05/04",@"05/05",@"05/06",@"05/07",@"05/08", nil];
-    weathers = [[NSArray alloc]initWithObjects:@"阴",@"阴",@"多云",@"晴",@"多云",@"多云", nil];
-    temperatures = [[NSArray alloc]initWithObjects:@"21~28°",@"22~29°",@"22~31°",@"22~28°",@"23~30°",@"23~28°", nil];
+    weatherDelegate = [WeatherDelegate readData];
+    dicDay = [[NSMutableArray alloc]init];
+    strWeather = [[NSMutableArray alloc]init];
+    temp = [[NSMutableArray alloc]init];
+    for (int i=0; i<7; i++) {
+        dicDay[i] = [weatherDelegate readWeatherDictionaryAtIndex:i];
+        strWeather[i] = weatherDelegate.readWeather;
+        temp[i] = weatherDelegate.readTemperature;
+    }
+
+    weekdays = [[NSArray alloc]initWithObjects:@"昨天",@"今天",@"明天",[dicDay[2] valueForKey:@"week"],[dicDay[3] valueForKey:@"week"],[dicDay[4] valueForKey:@"week"], nil];
+    days = [[NSArray alloc]initWithObjects:@"05/03",[dicDay[0] valueForKey:@"days"],[dicDay[1] valueForKey:@"days"],[dicDay[2] valueForKey:@"days"],[dicDay[3] valueForKey:@"days"],[dicDay[4] valueForKey:@"days"], nil];
+    weathers = [[NSArray alloc]initWithObjects:strWeather[0],strWeather[0],strWeather[1],strWeather[2],strWeather[3],strWeather[4], nil];
+    temperatures = [[NSArray alloc]initWithObjects:temp[0],temp[0],temp[1],temp[2],temp[3],temp[4], nil];
     self.view.backgroundColor = [UIColor blackColor];
     [self initColor];
     
@@ -71,11 +87,13 @@
     [cell.contentView insertSubview:imgView atIndex:0];
     NSString *weatherColor = [self wenzichuli:weathers[indexPath.row]];
     if ([weatherColor isEqual: @"晴"])
-        imgView.image = [self createImageWithColor:Color1];
+        imgView.image = [self createImageWithColor:color1];
     if ([weatherColor isEqual: @"多云"])
-        imgView.image = [self createImageWithColor:Color2];
-    if ([weatherColor rangeOfString:@"阴"].location != NSNotFound)
-        imgView.image = [self createImageWithColor:Color3];
+        imgView.image = [self createImageWithColor:color2];
+    if ([weatherColor isEqual: @"阴"])
+        imgView.image = [self createImageWithColor:color3];
+    if ([weatherColor rangeOfString:@"雨"].location != NSNotFound)
+        imgView.image = [self createImageWithColor:color4];
     return cell;
 }
 
@@ -105,9 +123,10 @@
 //初始化颜色
 -(void)initColor
 {
-    Color1= [UIColor colorWithRed:0.0/255 green:200.0/255 blue:230.0/255 alpha:1];
-    Color2= [UIColor colorWithRed:0.0/255 green:190.0/255 blue:200.0/255 alpha:1];
-    Color3= [UIColor colorWithRed:0.0/255 green:128.0/255 blue:130.0/255 alpha:1];
+    color1= [UIColor colorWithRed:0.0/255 green:200.0/255 blue:230.0/255 alpha:1];
+    color2= [UIColor colorWithRed:0.0/255 green:190.0/255 blue:200.0/255 alpha:1];
+    color3= [UIColor colorWithRed:0.0/255 green:128.0/255 blue:130.0/255 alpha:1];
+    color4= [UIColor colorWithRed:220.0/255 green:128.0/255 blue:110.0/255 alpha:1];
 }
 //文字处理
 -(NSString *)wenzichuli:(NSString *)string

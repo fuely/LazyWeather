@@ -24,6 +24,10 @@
 		933B72EA1CD73192007219FB /* FirstCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933B72E81CD73192007219FB /* FirstCollectionCell.xib */; };
 		933B72ED1CD88D7C007219FB /* SecondCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 933B72EC1CD88D7C007219FB /* SecondCollectionCell.m */; };
 		933B72F01CD8E451007219FB /* ThirdCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 933B72EF1CD8E451007219FB /* ThirdCollectionCell.m */; };
+		93834B9F1CDB189400CB7C16 /* WeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834B9E1CDB189400CB7C16 /* WeatherData.m */; };
+		93834BA11CDB2ED700CB7C16 /* LocalDataList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93834BA01CDB2ED700CB7C16 /* LocalDataList.plist */; };
+		93834BA41CDB2F2D00CB7C16 /* LocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BA31CDB2F2D00CB7C16 /* LocalData.m */; };
+		93834BA71CDB83F800CB7C16 /* WeatherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BA61CDB83F800CB7C16 /* WeatherDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +82,13 @@
 		933B72EC1CD88D7C007219FB /* SecondCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondCollectionCell.m; sourceTree = "<group>"; };
 		933B72EE1CD8E451007219FB /* ThirdCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdCollectionCell.h; sourceTree = "<group>"; };
 		933B72EF1CD8E451007219FB /* ThirdCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdCollectionCell.m; sourceTree = "<group>"; };
+		93834B9D1CDB189400CB7C16 /* WeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherData.h; sourceTree = "<group>"; };
+		93834B9E1CDB189400CB7C16 /* WeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherData.m; sourceTree = "<group>"; };
+		93834BA01CDB2ED700CB7C16 /* LocalDataList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LocalDataList.plist; sourceTree = "<group>"; };
+		93834BA21CDB2F2D00CB7C16 /* LocalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalData.h; sourceTree = "<group>"; };
+		93834BA31CDB2F2D00CB7C16 /* LocalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalData.m; sourceTree = "<group>"; };
+		93834BA51CDB83F800CB7C16 /* WeatherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDelegate.h; sourceTree = "<group>"; };
+		93834BA61CDB83F800CB7C16 /* WeatherDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +171,13 @@
 				933B72AC1CD72739007219FB /* LaunchScreen.storyboard */,
 				933B72AF1CD72739007219FB /* Info.plist */,
 				933B729E1CD72739007219FB /* Supporting Files */,
+				93834B9D1CDB189400CB7C16 /* WeatherData.h */,
+				93834B9E1CDB189400CB7C16 /* WeatherData.m */,
+				93834BA01CDB2ED700CB7C16 /* LocalDataList.plist */,
+				93834BA21CDB2F2D00CB7C16 /* LocalData.h */,
+				93834BA31CDB2F2D00CB7C16 /* LocalData.m */,
+				93834BA51CDB83F800CB7C16 /* WeatherDelegate.h */,
+				93834BA61CDB83F800CB7C16 /* WeatherDelegate.m */,
 			);
 			path = LazyWeather;
 			sourceTree = "<group>";
@@ -335,6 +353,7 @@
 				933B72EA1CD73192007219FB /* FirstCollectionCell.xib in Resources */,
 				933B72AE1CD72739007219FB /* LaunchScreen.storyboard in Resources */,
 				933B72AB1CD72739007219FB /* Assets.xcassets in Resources */,
+				93834BA11CDB2ED700CB7C16 /* LocalDataList.plist in Resources */,
 				933B72A91CD72739007219FB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,11 +430,14 @@
 				933B72DF1CD72B92007219FB /* LeftViewTableViewCell.m in Sources */,
 				933B72F01CD8E451007219FB /* ThirdCollectionCell.m in Sources */,
 				933B72E51CD72BC0007219FB /* RightViewTableViewController.m in Sources */,
+				93834BA41CDB2F2D00CB7C16 /* LocalData.m in Sources */,
+				93834B9F1CDB189400CB7C16 /* WeatherData.m in Sources */,
 				933B72A61CD72739007219FB /* ViewController.m in Sources */,
 				933B72A31CD72739007219FB /* AppDelegate.m in Sources */,
 				933B72ED1CD88D7C007219FB /* SecondCollectionCell.m in Sources */,
 				933B72E91CD73192007219FB /* FirstCollectionCell.m in Sources */,
 				933B72D91CD72B4C007219FB /* LeftViewTableViewController.m in Sources */,
+				93834BA71CDB83F800CB7C16 /* WeatherDelegate.m in Sources */,
 				933B72A01CD72739007219FB /* main.m in Sources */,
 				933B72E21CD72BA3007219FB /* RightViewTableViewCell.m in Sources */,
 			);

@@ -7,6 +7,7 @@
 //
 
 #import "SecondCollectionCell.h"
+#import "WeatherDelegate.h"
 
 @implementation SecondCollectionCell
 
@@ -14,9 +15,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        WeatherDelegate *weatherDelegate = [WeatherDelegate readData];
+        [weatherDelegate readWeatherDictionaryAtIndex:0];
+        
         self.backgroundColor = [UIColor whiteColor];
         _toplb = [[UILabel alloc]initWithFrame:CGRectMake(40, 40, 120, 40)];
-        _toplb.text = @"空气 优>";
+        _toplb.text =[NSString stringWithFormat:@"空气 %@>",weatherDelegate.readLevnm];
         _toplb.font = [UIFont boldSystemFontOfSize:25];
         [self addSubview:_toplb];
         
@@ -25,8 +30,8 @@
         [self addSubview:_setBtn];
         
         _airView = [[UILabel alloc]initWithFrame:CGRectMake(40, 120, 100, 100)];
-        _airView.text = @"57";
-        _airView.font = [UIFont boldSystemFontOfSize:85];
+        _airView.text = weatherDelegate.readAqi;
+        _airView.font = [UIFont boldSystemFontOfSize:83];
         [self addSubview:_airView];
         
         NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
@@ -50,7 +55,7 @@
         [self addSubview:_volumeBar];
         
         _airlb = [[UILabel alloc]initWithFrame:CGRectMake(40, 330, 280, 60)];
-        _airlb.text = @"可以正常户外活动,异敏感人群应减少外出.";
+        _airlb.text = weatherDelegate.readRemark;
         _airlb.lineBreakMode = NSLineBreakByWordWrapping;
         _airlb.numberOfLines = 0;
         [self addSubview:_airlb];
@@ -62,8 +67,8 @@
         _o3 = [[UILabel alloc]initWithFrame:CGRectMake(40, 530, 200, 20)];
         _co = [[UILabel alloc]initWithFrame:CGRectMake(40, 550, 200, 20)];
         
-        _pm10.text = @"PM10/可吸收入颗粒物:57";
-        _pm2.text = @"PM2.5/入肺颗粒物:57";
+        _pm10.text = [NSString stringWithFormat:@"PM10/可吸收入颗粒物:%@",weatherDelegate.readAqi];
+        _pm2.text = [NSString stringWithFormat:@"PM2.5/入肺颗粒物:%@",weatherDelegate.readAqi];
         _no2.text = @"NO2/二氧化氮:35";
         _so2.text = @"SO2/二氧化硫:9";
         _o3.text = @"O3/臭氧:80";

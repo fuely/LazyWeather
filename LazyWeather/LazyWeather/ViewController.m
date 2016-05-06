@@ -10,6 +10,8 @@
 #import "FirstCollectionCell.h"
 #import "SecondCollectionCell.h"
 #import "ThirdCollectionCell.h"
+#import "WeatherData.h"
+#import "LocalData.h"
 
 @interface ViewController ()
 
@@ -38,9 +40,12 @@ static NSString * const reuseIdentifier = @"FirstCell";
     //左右页面初始化
     [self addLeftViewwithRightView];
 
+//    //查询网络数据
+//    WeatherData *weatherData = [[WeatherData alloc]init];
+//    [weatherData startRequest];
     
-
 }
+
 
 #pragma mark - UICollectionViewDataSource
 //定义展示的Section的个数
@@ -144,6 +149,7 @@ static NSString * const reuseIdentifier = @"FirstCell";
     self.rightDrawerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rightView"];
     self.rightDrawerViewController.view.frame = CGRectMake(80, 0, 375, 667);
     [self.view insertSubview:self.rightDrawerViewController.view belowSubview:_mCenterCollectionCtr];
+    
 }
 //点击事件
 - (void)gestures2:(UITapGestureRecognizer *)gesture
