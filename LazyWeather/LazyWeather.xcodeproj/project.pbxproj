@@ -28,6 +28,8 @@
 		93834BA11CDB2ED700CB7C16 /* LocalDataList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93834BA01CDB2ED700CB7C16 /* LocalDataList.plist */; };
 		93834BA41CDB2F2D00CB7C16 /* LocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BA31CDB2F2D00CB7C16 /* LocalData.m */; };
 		93834BA71CDB83F800CB7C16 /* WeatherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BA61CDB83F800CB7C16 /* WeatherDelegate.m */; };
+		93834BAD1CDC8DD700CB7C16 /* MyCoreLacation.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BAC1CDC8DD700CB7C16 /* MyCoreLacation.m */; };
+		93834BB21CDD0F1700CB7C16 /* SetterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BB11CDD0F1700CB7C16 /* SetterTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,10 @@
 		93834BA31CDB2F2D00CB7C16 /* LocalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalData.m; sourceTree = "<group>"; };
 		93834BA51CDB83F800CB7C16 /* WeatherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDelegate.h; sourceTree = "<group>"; };
 		93834BA61CDB83F800CB7C16 /* WeatherDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDelegate.m; sourceTree = "<group>"; };
+		93834BAB1CDC8DD700CB7C16 /* MyCoreLacation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCoreLacation.h; sourceTree = "<group>"; };
+		93834BAC1CDC8DD700CB7C16 /* MyCoreLacation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCoreLacation.m; sourceTree = "<group>"; };
+		93834BB01CDD0F1700CB7C16 /* SetterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetterTableViewController.h; sourceTree = "<group>"; };
+		93834BB11CDD0F1700CB7C16 /* SetterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetterTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,9 +170,12 @@
 				933B72A41CD72739007219FB /* ViewController.h */,
 				933B72A51CD72739007219FB /* ViewController.m */,
 				933B72A71CD72739007219FB /* Main.storyboard */,
+				93834BAB1CDC8DD700CB7C16 /* MyCoreLacation.h */,
+				93834BAC1CDC8DD700CB7C16 /* MyCoreLacation.m */,
 				933B72D11CD72AB9007219FB /* CenterView */,
 				933B72D51CD72AFA007219FB /* LeftView */,
 				933B72D61CD72B0C007219FB /* RightView */,
+				93834BAF1CDD0EBD00CB7C16 /* OtherView */,
 				933B72AA1CD72739007219FB /* Assets.xcassets */,
 				933B72AC1CD72739007219FB /* LaunchScreen.storyboard */,
 				933B72AF1CD72739007219FB /* Info.plist */,
@@ -244,6 +253,15 @@
 			name = RightView;
 			sourceTree = "<group>";
 		};
+		93834BAF1CDD0EBD00CB7C16 /* OtherView */ = {
+			isa = PBXGroup;
+			children = (
+				93834BB01CDD0F1700CB7C16 /* SetterTableViewController.h */,
+				93834BB11CDD0F1700CB7C16 /* SetterTableViewController.m */,
+			);
+			name = OtherView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -314,6 +332,11 @@
 				TargetAttributes = {
 					933B729A1CD72739007219FB = {
 						CreatedOnToolsVersion = 7.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					933B72B31CD72739007219FB = {
 						CreatedOnToolsVersion = 7.3;
@@ -438,6 +461,8 @@
 				933B72E91CD73192007219FB /* FirstCollectionCell.m in Sources */,
 				933B72D91CD72B4C007219FB /* LeftViewTableViewController.m in Sources */,
 				93834BA71CDB83F800CB7C16 /* WeatherDelegate.m in Sources */,
+				93834BAD1CDC8DD700CB7C16 /* MyCoreLacation.m in Sources */,
+				93834BB21CDD0F1700CB7C16 /* SetterTableViewController.m in Sources */,
 				933B72A01CD72739007219FB /* main.m in Sources */,
 				933B72E21CD72BA3007219FB /* RightViewTableViewCell.m in Sources */,
 			);

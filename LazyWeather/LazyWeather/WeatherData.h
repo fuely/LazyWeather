@@ -11,6 +11,7 @@
 @interface WeatherData : NSObject
 
 @property (strong,nonatomic)NSString *city;
+@property (strong,nonatomic)NSString *cityid;
 -(void)startRequest;
 
 @end

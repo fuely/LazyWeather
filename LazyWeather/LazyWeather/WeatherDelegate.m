@@ -10,103 +10,81 @@
 #import "LocalData.h"
 
 @implementation WeatherDelegate
-static WeatherDelegate *readData = nil;
-+ (WeatherDelegate *)readData
-{
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        
-        readData = [[self alloc]init];
-        [readData readWeatherArray];
-        
-    });
-    
-    return readData;
-}
-- (NSArray *) readWeatherArray
+
+- (NSArray *) readWeatherArrayAtIndex:(int)index
 {
     LocalData *localData = [LocalData sharedManager];
-    _weatherArry = [localData readDataWithArrayAtIndex:0];
-    _weatidArray = [localData readDataWithArrayAtIndex:1];
-    _airDic =(NSDictionary *) [localData readDataWithArrayAtIndex:2];
+    _weatherArry = [localData readDataWithArrayAtIndex:index];
     return _weatherArry;
 }
-- (NSDictionary *) readWeatherDictionaryAtIndex:(int)index
+- (NSDictionary *) readArrayDicAtIndex:(int)index
 {
-   _weatherDic = [self readWeatherArray][index];
-    return _weatherDic;
+    NSDictionary *weatherDic = _weatherArry[index];
+    _cityid = [weatherDic valueForKey:@"cityid"];
+    _citynm = [weatherDic valueForKey:@"citynm"];
+    _days = [weatherDic valueForKey:@"days"];
+    _humidity = [weatherDic valueForKey:@"humidity"];
+    _tempCurr = [weatherDic valueForKey:@"temp_curr"];
+    _tempHigh = [weatherDic valueForKey:@"temp_high"];
+    _tempLow = [weatherDic valueForKey:@"temp_low"];
+    _temperature = [weatherDic valueForKey:@"temperature"];
+    _weaid = [weatherDic valueForKey:@"weaid"];
+    _weather = [weatherDic valueForKey:@"weather"];
+    _weatid = [weatherDic valueForKey:@"weatid"];
+    _week = [weatherDic valueForKey:@"week"];
+    _wind = [weatherDic valueForKey:@"wind"];
+    _windid = [weatherDic valueForKey:@"windid"];
+    _winp = [weatherDic valueForKey:@"winp"];
+    _winpid = [weatherDic valueForKey:@"winpid"];
+    return weatherDic;
 }
-- (NSString *) readCitynm
+- (NSDictionary *) readTodayWeatherDictionary
 {
+     _weatherDic =(NSDictionary *)[self readWeatherArrayAtIndex:3];
+    _cityid = [_weatherDic valueForKey:@"cityid"];
+    _citynm = [_weatherDic valueForKey:@"citynm"];
+    _days = [_weatherDic valueForKey:@"days"];
+    _humidity = [_weatherDic valueForKey:@"humidity"];
+    _tempCurr = [_weatherDic valueForKey:@"temp_curr"];
+    _tempHigh = [_weatherDic valueForKey:@"temp_high"];
+    _tempLow = [_weatherDic valueForKey:@"temp_low"];
+    _temperature = [_weatherDic valueForKey:@"temperature"];
+    _weaid = [_weatherDic valueForKey:@"weaid"];
+    _weather = [_weatherDic valueForKey:@"weather"];
+    _weatid = [_weatherDic valueForKey:@"weatid"];
+    _week = [_weatherDic valueForKey:@"week"];
+    _wind = [_weatherDic valueForKey:@"wind"];
+    _windid = [_weatherDic valueForKey:@"windid"];
+    _winp = [_weatherDic valueForKey:@"winp"];
+    _winpid = [_weatherDic valueForKey:@"winpid"];
     
-    return [_weatherDic valueForKey:@"citynm"];
+    NSDictionary *weatidDic = [self readWeatherArrayAtIndex:1][[_weatid intValue]-1];
+    _weatidnm = [weatidDic valueForKey:@"weather"];
+    _weatidicon = [weatidDic valueForKey:@"weather_icon"];
+
+    
+    return _weatherDic;
+    
 }
 
-- (NSString *)readDays
+- (NSDictionary *) readAqiDictionary
 {
-    return [_weatherDic valueForKey:@"days"];
-}
-- (NSString *) readTempHigh
-{
-    return [_weatherDic valueForKey:@"temp_high"];
-}
-- (NSString *) readTempLow
-{
-    return [_weatherDic valueForKey:@"temp_low"];
-}
-- (NSString *) readTemperature
-{
-    return [_weatherDic valueForKey:@"temperature"];
-}
-- (NSString *) readWeather
-{
-    return [_weatherDic valueForKey:@"weather"];
-}
-- (NSString *) readWeatherIcon
-{
-    return [_weatherDic valueForKey:@"weather_icon"];
-}
-- (NSString *) readWeatid
-{
-    int index =[[_weatherDic valueForKey:@"weatid"] intValue];
-    NSDictionary *weatidDic = _weatidArray[index-1];
-    return [weatidDic valueForKey:@"weather"];
-}
-- (NSString *) readWeatidIcon
-{
-    int index =[[_weatherDic valueForKey:@"weatid"] intValue];
-    NSDictionary *weatidDic = _weatidArray[index-1];
-    return [weatidDic valueForKey:@"weather_icon"];
-}
-- (NSString *) readWeek
-{
-    return [_weatherDic valueForKey:@"week"];
-}
-- (NSString *) readWind
-{
-    return [_weatherDic valueForKey:@"wind"];
-}
-- (NSString *) readWinp
-{
-    return [_weatherDic valueForKey:@"winp"];
+    LocalData *localData = [LocalData sharedManager];
+    _airDic = (NSDictionary *)[localData readDataWithArrayAtIndex:2];
+    _aqi = [_airDic valueForKey:@"aqi"];
+    _aqilevid = [_airDic valueForKey:@"aqi_levid"];
+    _aqilevnm = [_airDic valueForKey:@"aqi_levnm"];
+    _aqiremark = [_airDic valueForKey:@"aqi_remark"];
+    return _airDic;
 }
 
-- (NSString *) readLevnm
+- (NSDictionary *) readYesterdayWeatherDictionary
 {
-    return [_airDic valueForKey:@"aqi_levnm"];
-}
-- (NSString *) readLevid
-{
-    return [_airDic valueForKey:@"aqi_levid"];
+    [self readWeatherArrayAtIndex:5];
+    NSDictionary *weatherDic = _weatherArry[0];
+    return weatherDic;
 
-}
-- (NSString *) readRemark
-{
-    return [_airDic valueForKey:@"aqi_remark"];
-}
-- (NSString *) readAqi
-{
-    return [_airDic valueForKey:@"aqi"];
+    
 }
 
 @end

@@ -12,10 +12,11 @@
 #import "ThirdCollectionCell.h"
 #import "WeatherData.h"
 #import "LocalData.h"
+#import "WeatherDelegate.h"
+#import "MyCoreLacation.h"
 
 @interface ViewController ()
-
-
+@property (nonatomic,strong) CLLocationManager *locationManager;
 
 @end
 
@@ -25,6 +26,8 @@
     CGFloat pianyi;
     UITapGestureRecognizer *gesture2;
     UIButton *heartBtn;
+    UIColor *backColor;
+    
 }
 
 static NSString * const reuseIdentifier = @"FirstCell";
@@ -32,17 +35,43 @@ static NSString * const reuseIdentifier = @"FirstCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    MyCoreLacation *mylocation = [[MyCoreLacation alloc]init];
+//    [mylocation myLacationManager];
+//    
+//    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+//    [geocoder reverseGeocodeLocation:mylocation.currLocation
+//                   completionHandler:^(NSArray *placemarks, NSError *error) {
+//                       
+//                       if ([placemarks count] > 0) {
+//                           
+//                           CLPlacemark *placemark = placemarks[0];
+//                           
+//                           
+//                           NSString *city = [NSString stringWithFormat:@"%@,%@,%@,%@,%@",placemark.administrativeArea,placemark.locality,placemark.addressDictionary,placemark.name,placemark.country];
+//                           city = city == nil ? @"": city;
+//                           NSLog(@"%@",city);
+//                           
+//                       }
+//                       
+//                   }];
+//    
+    //定位服务初始化并弹出用户授权对话框
+    _locationManager = [[CLLocationManager alloc] init];
+    [_locationManager requestWhenInUseAuthorization];
+    [_locationManager requestAlwaysAuthorization];
+    
     //设置_mCenterCollectionCtr代理,加载cell
     _mCenterCollectionCtr.delegate = self;
     _mCenterCollectionCtr.dataSource = self;
-    _mCenterCollectionCtr.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"rainy"]];
+    [self backgroundImg];
+    //查询网络数据
+//    WeatherData *weatherData = [[WeatherData alloc]init];
+//    [weatherData startRequest];
     
     //左右页面初始化
     [self addLeftViewwithRightView];
-
-//    //查询网络数据
-//    WeatherData *weatherData = [[WeatherData alloc]init];
-//    [weatherData startRequest];
+    
+     backColor = [UIColor colorWithRed:0 green:arc4random()%200/255.0 blue:arc4random()%255/255.0 alpha:0.5];
     
 }
 
@@ -77,17 +106,30 @@ static NSString * const reuseIdentifier = @"FirstCell";
     switch (indexPath.row) {
         case 0:
         {
+            firstCell.backgroundColor = backColor;
             cell = firstCell;
         
         }
             break;
         case 1:
         {
+            secondCell.airView.textColor =backColor;
+            secondCell.airlb.textColor = backColor;
+            secondCell.airText.textColor = backColor;
+            secondCell.toplb.textColor = backColor;
+            secondCell.pm2.textColor = backColor;
+            secondCell.pm10.textColor = backColor;
+            secondCell.no2.textColor = backColor;
+            secondCell.so2.textColor = backColor;
+            secondCell.o3.textColor = backColor;
+            secondCell.co.textColor =backColor;
+            [secondCell.setBtn addTarget:self action:@selector(setBtnClick) forControlEvents:UIControlEventTouchUpInside];
             cell = secondCell;
         }
             break;
         case 2:
         {
+            [thirdCell.setBtn addTarget:self action:@selector(setBtnClick) forControlEvents:UIControlEventTouchUpInside];
             cell = thirdCell;
         }
             break;
@@ -97,6 +139,12 @@ static NSString * const reuseIdentifier = @"FirstCell";
     
     return cell;
 }
+
+- (void)setBtnClick
+{
+    [self performSegueWithIdentifier:@"CenterToSetPage" sender:nil];
+}
+
 #pragma mark - UICollectionViewDelegate
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -231,6 +279,44 @@ static NSString * const reuseIdentifier = @"FirstCell";
     _mCenterCollectionCtr.transform = CGAffineTransformMakeTranslation(x, 0);
     [UIView commitAnimations];
     
+}
+
+//背景实现
+- (void)backgroundImg
+{
+    WeatherDelegate *weather = [[WeatherDelegate alloc]init];
+    [weather readTodayWeatherDictionary];
+    NSString *weatherStr= [self wenzichuli:weather.weather];
+    if ([weatherStr isEqual: @"晴"])
+    _mCenterCollectionCtr.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sunny"]];
+    if ([weatherStr isEqual: @"雷"])
+    _mCenterCollectionCtr.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"thunder"]];
+    if ([weatherStr isEqual: @"多云"])
+    _mCenterCollectionCtr.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cloudy"]];
+    if ([weatherStr isEqual: @"雨"])
+    _mCenterCollectionCtr.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"rainy"]];
+    if ([weatherStr isEqual: @"阵雨"])
+    _mCenterCollectionCtr.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"lightrain3"]];
+    if ([weatherStr isEqual: @"阴"])
+    _mCenterCollectionCtr.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cloudy"]];
+    if ([weatherStr isEqual: @"雪"])
+    _mCenterCollectionCtr.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snow"]];
+    if ([weatherStr rangeOfString:@"浮尘"].location != NSNotFound)
+    _mCenterCollectionCtr.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"dusty"]];
+}
+//文字处理
+-(NSString *)wenzichuli:(NSString *)string
+{
+    if([string rangeOfString:@"转"].location != NSNotFound){
+        NSRange range = [string rangeOfString:@"转"];
+        NSString *aaaa = [string substringFromIndex:range.location+1];
+        NSString *cccc = [NSString stringWithFormat:@"%@",aaaa];
+        return cccc;
+    }
+    else{
+        NSString *cccc = [NSString stringWithFormat:@"%@",string];
+        return cccc;
+    }
 }
 
 

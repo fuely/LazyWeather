@@ -25,7 +25,6 @@
     UIColor *color2;
     UIColor *color3;
     UIColor *color4;
-    WeatherDelegate *weatherDelegate;
     NSMutableArray *dicDay;
     NSMutableArray *strWeather;
     NSMutableArray *temp;
@@ -34,20 +33,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    weatherDelegate = [WeatherDelegate readData];
+    WeatherDelegate *weatherDelegate = [[WeatherDelegate alloc]init];
+    
     dicDay = [[NSMutableArray alloc]init];
     strWeather = [[NSMutableArray alloc]init];
     temp = [[NSMutableArray alloc]init];
-    for (int i=0; i<7; i++) {
-        dicDay[i] = [weatherDelegate readWeatherDictionaryAtIndex:i];
-        strWeather[i] = weatherDelegate.readWeather;
-        temp[i] = weatherDelegate.readTemperature;
+    for (int i=0; i<[weatherDelegate readWeatherArrayAtIndex:0].count; i++) {
+        dicDay[i] = [weatherDelegate readArrayDicAtIndex:i];
+        strWeather[i] = weatherDelegate.weather;
+        temp[i] = weatherDelegate.temperature;
     }
-
+    
+    NSDictionary *yesterday = [weatherDelegate readYesterdayWeatherDictionary];
+    NSDictionary *today = [weatherDelegate readTodayWeatherDictionary];
     weekdays = [[NSArray alloc]initWithObjects:@"昨天",@"今天",@"明天",[dicDay[2] valueForKey:@"week"],[dicDay[3] valueForKey:@"week"],[dicDay[4] valueForKey:@"week"], nil];
-    days = [[NSArray alloc]initWithObjects:@"05/03",[dicDay[0] valueForKey:@"days"],[dicDay[1] valueForKey:@"days"],[dicDay[2] valueForKey:@"days"],[dicDay[3] valueForKey:@"days"],[dicDay[4] valueForKey:@"days"], nil];
-    weathers = [[NSArray alloc]initWithObjects:strWeather[0],strWeather[0],strWeather[1],strWeather[2],strWeather[3],strWeather[4], nil];
-    temperatures = [[NSArray alloc]initWithObjects:temp[0],temp[0],temp[1],temp[2],temp[3],temp[4], nil];
+    
+    days = [[NSArray alloc]initWithObjects:[[yesterday valueForKey:@"uptime"] substringToIndex:10],[today valueForKey:@"days"],[dicDay[1] valueForKey:@"days"],[dicDay[2] valueForKey:@"days"],[dicDay[3] valueForKey:@"days"],[dicDay[4] valueForKey:@"days"], nil];
+    
+    for (int j=0; j<strWeather.count; j++) {
+        if ([strWeather[j] length]>2) {
+            strWeather[j] = [strWeather[j] substringToIndex:2];
+        }
+    }
+    
+    weathers = [[NSArray alloc]initWithObjects:[yesterday valueForKey:@"weather"],[today valueForKey:@"weather"],strWeather[1],strWeather[2],strWeather[3],strWeather[4], nil];
+    
+    temperatures = [[NSArray alloc]initWithObjects:[yesterday valueForKey:@"temperature"],[today valueForKey:@"temperature"],temp[1],temp[2],temp[3],temp[4], nil];
     self.view.backgroundColor = [UIColor blackColor];
     [self initColor];
     
@@ -85,7 +96,9 @@
     imgView.layer.masksToBounds = YES;
     imgView.layer.cornerRadius = 20;
     [cell.contentView insertSubview:imgView atIndex:0];
-    NSString *weatherColor = [self wenzichuli:weathers[indexPath.row]];
+    
+
+    NSString *weatherColor = weathers[indexPath.row];
     if ([weatherColor isEqual: @"晴"])
         imgView.image = [self createImageWithColor:color1];
     if ([weatherColor isEqual: @"多云"])
@@ -123,24 +136,10 @@
 //初始化颜色
 -(void)initColor
 {
-    color1= [UIColor colorWithRed:0.0/255 green:200.0/255 blue:230.0/255 alpha:1];
-    color2= [UIColor colorWithRed:0.0/255 green:190.0/255 blue:200.0/255 alpha:1];
-    color3= [UIColor colorWithRed:0.0/255 green:128.0/255 blue:130.0/255 alpha:1];
-    color4= [UIColor colorWithRed:220.0/255 green:128.0/255 blue:110.0/255 alpha:1];
-}
-//文字处理
--(NSString *)wenzichuli:(NSString *)string
-{
-    if([string rangeOfString:@"转"].location != NSNotFound){
-        NSRange range = [string rangeOfString:@"转"];
-        NSString *aaaa = [string substringFromIndex:range.location+1];
-        NSString *cccc = [NSString stringWithFormat:@"%@",aaaa];
-        return cccc;
-    }
-    else{
-        NSString *cccc = [NSString stringWithFormat:@"%@",string];
-        return cccc;
-    }
+    color1= [UIColor colorWithRed:244.0/255 green:222.0/255 blue:41.0/255 alpha:1];
+    color2= [UIColor colorWithRed:147.0/255 green:224.0/255 blue:255.0/255 alpha:1];
+    color3= [UIColor colorWithRed:92.0/255 green:167.0/255 blue:186.0/255 alpha:1];
+    color4= [UIColor colorWithRed:179.0/255 green:197.0/255 blue:135.0/255 alpha:1];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

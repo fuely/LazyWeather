@@ -7,7 +7,7 @@
 //
 
 #import "ThirdCollectionCell.h"
-
+#import "WeatherDelegate.h"
 @implementation ThirdCollectionCell
 
 - (id)initWithFrame:(CGRect)frame
@@ -41,11 +41,14 @@
         [_imgClock addSubview:_lbClock];
         [_btnView addSubview:_imgClock];
         
+        WeatherDelegate *weatherDelegate = [[WeatherDelegate alloc]init];
+        [weatherDelegate readTodayWeatherDictionary];
+        
         _lbCloudy = [[UILabel alloc]initWithFrame:CGRectMake(110, 0, 120, 60)];
         _lbrain = [[UILabel alloc]initWithFrame:CGRectMake(110, 40, 200, 30)];
-        _lbCloudy.text = @"多云23°";
+        _lbCloudy.text = [NSString stringWithFormat:@"%@%@°",weatherDelegate.weather,weatherDelegate.tempCurr];
         _lbCloudy.font = [UIFont boldSystemFontOfSize:27];
-        _lbrain.text = @"东北风 一级 14%可能下雨";
+        _lbrain.text = [NSString stringWithFormat:@"%@ %@ %@可能有雨",weatherDelegate.wind,weatherDelegate.winp,weatherDelegate.humidity];
         _lbrain.font = [UIFont systemFontOfSize:15];
         [_btnView addSubview:_lbCloudy];
         [_btnView addSubview:_lbrain];

@@ -16,12 +16,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        WeatherDelegate *weatherDelegate = [WeatherDelegate readData];
-        [weatherDelegate readWeatherDictionaryAtIndex:0];
+        WeatherDelegate *weatherDelegate = [[WeatherDelegate alloc]init];
+        [weatherDelegate readAqiDictionary];
         
         self.backgroundColor = [UIColor whiteColor];
         _toplb = [[UILabel alloc]initWithFrame:CGRectMake(40, 40, 120, 40)];
-        _toplb.text =[NSString stringWithFormat:@"空气 %@>",weatherDelegate.readLevnm];
+        _toplb.text =[NSString stringWithFormat:@"空气 %@>",weatherDelegate.aqilevnm];
         _toplb.font = [UIFont boldSystemFontOfSize:25];
         [self addSubview:_toplb];
         
@@ -30,8 +30,8 @@
         [self addSubview:_setBtn];
         
         _airView = [[UILabel alloc]initWithFrame:CGRectMake(40, 120, 100, 100)];
-        _airView.text = weatherDelegate.readAqi;
-        _airView.font = [UIFont boldSystemFontOfSize:83];
+        _airView.text = weatherDelegate.aqi;
+        _airView.font = [UIFont boldSystemFontOfSize:80];
         [self addSubview:_airView];
         
         NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
@@ -55,7 +55,7 @@
         [self addSubview:_volumeBar];
         
         _airlb = [[UILabel alloc]initWithFrame:CGRectMake(40, 330, 280, 60)];
-        _airlb.text = weatherDelegate.readRemark;
+        _airlb.text = weatherDelegate.aqiremark;
         _airlb.lineBreakMode = NSLineBreakByWordWrapping;
         _airlb.numberOfLines = 0;
         [self addSubview:_airlb];
@@ -67,8 +67,8 @@
         _o3 = [[UILabel alloc]initWithFrame:CGRectMake(40, 530, 200, 20)];
         _co = [[UILabel alloc]initWithFrame:CGRectMake(40, 550, 200, 20)];
         
-        _pm10.text = [NSString stringWithFormat:@"PM10/可吸收入颗粒物:%@",weatherDelegate.readAqi];
-        _pm2.text = [NSString stringWithFormat:@"PM2.5/入肺颗粒物:%@",weatherDelegate.readAqi];
+        _pm10.text = [NSString stringWithFormat:@"PM10/可吸收入颗粒物:%@",weatherDelegate.aqi];
+        _pm2.text = [NSString stringWithFormat:@"PM2.5/入肺颗粒物:%@",weatherDelegate.aqi];
         _no2.text = @"NO2/二氧化氮:35";
         _so2.text = @"SO2/二氧化硫:9";
         _o3.text = @"O3/臭氧:80";
