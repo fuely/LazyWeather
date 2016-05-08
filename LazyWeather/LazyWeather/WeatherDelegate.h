@@ -48,5 +48,6 @@
 - (NSDictionary *) readTodayWeatherDictionary;
 - (NSDictionary *) readAqiDictionary;
 - (NSDictionary *) readYesterdayWeatherDictionary;
+- (NSDictionary *) readAllCitysDictionary;
 
 @end

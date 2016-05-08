@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		167A3FB27381F15E1B293CDF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8524AEA6DE5B9093A7147A /* libPods.a */; };
+		9318434A1CDEF9E6005DCC26 /* CitysTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931843491CDEF9E6005DCC26 /* CitysTableViewController.m */; };
 		933B72A01CD72739007219FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 933B729F1CD72739007219FB /* main.m */; };
 		933B72A31CD72739007219FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 933B72A21CD72739007219FB /* AppDelegate.m */; };
 		933B72A61CD72739007219FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 933B72A51CD72739007219FB /* ViewController.m */; };
@@ -25,7 +26,6 @@
 		933B72ED1CD88D7C007219FB /* SecondCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 933B72EC1CD88D7C007219FB /* SecondCollectionCell.m */; };
 		933B72F01CD8E451007219FB /* ThirdCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 933B72EF1CD8E451007219FB /* ThirdCollectionCell.m */; };
 		93834B9F1CDB189400CB7C16 /* WeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834B9E1CDB189400CB7C16 /* WeatherData.m */; };
-		93834BA11CDB2ED700CB7C16 /* LocalDataList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93834BA01CDB2ED700CB7C16 /* LocalDataList.plist */; };
 		93834BA41CDB2F2D00CB7C16 /* LocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BA31CDB2F2D00CB7C16 /* LocalData.m */; };
 		93834BA71CDB83F800CB7C16 /* WeatherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BA61CDB83F800CB7C16 /* WeatherDelegate.m */; };
 		93834BAD1CDC8DD700CB7C16 /* MyCoreLacation.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BAC1CDC8DD700CB7C16 /* MyCoreLacation.m */; };
@@ -54,6 +54,8 @@
 		5A8524AEA6DE5B9093A7147A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8074758688F1C38BFF805177 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		864E4D14A34EA4BCF30CB3C8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		931843481CDEF9E6005DCC26 /* CitysTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitysTableViewController.h; sourceTree = "<group>"; };
+		931843491CDEF9E6005DCC26 /* CitysTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitysTableViewController.m; sourceTree = "<group>"; };
 		933B729B1CD72739007219FB /* LazyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LazyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		933B729F1CD72739007219FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		933B72A11CD72739007219FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -87,7 +89,6 @@
 		933B72EF1CD8E451007219FB /* ThirdCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdCollectionCell.m; sourceTree = "<group>"; };
 		93834B9D1CDB189400CB7C16 /* WeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherData.h; sourceTree = "<group>"; };
 		93834B9E1CDB189400CB7C16 /* WeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherData.m; sourceTree = "<group>"; };
-		93834BA01CDB2ED700CB7C16 /* LocalDataList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LocalDataList.plist; sourceTree = "<group>"; };
 		93834BA21CDB2F2D00CB7C16 /* LocalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalData.h; sourceTree = "<group>"; };
 		93834BA31CDB2F2D00CB7C16 /* LocalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalData.m; sourceTree = "<group>"; };
 		93834BA51CDB83F800CB7C16 /* WeatherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDelegate.h; sourceTree = "<group>"; };
@@ -143,6 +144,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9318434B1CDF0E16005DCC26 /* DataAndDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				93834B9D1CDB189400CB7C16 /* WeatherData.h */,
+				93834B9E1CDB189400CB7C16 /* WeatherData.m */,
+				93834BA21CDB2F2D00CB7C16 /* LocalData.h */,
+				93834BA31CDB2F2D00CB7C16 /* LocalData.m */,
+				93834BAB1CDC8DD700CB7C16 /* MyCoreLacation.h */,
+				93834BAC1CDC8DD700CB7C16 /* MyCoreLacation.m */,
+				93834BA51CDB83F800CB7C16 /* WeatherDelegate.h */,
+				93834BA61CDB83F800CB7C16 /* WeatherDelegate.m */,
+			);
+			name = DataAndDelegate;
+			sourceTree = "<group>";
+		};
 		933B72921CD72739007219FB = {
 			isa = PBXGroup;
 			children = (
@@ -173,23 +189,15 @@
 				933B72A41CD72739007219FB /* ViewController.h */,
 				933B72A51CD72739007219FB /* ViewController.m */,
 				933B72A71CD72739007219FB /* Main.storyboard */,
-				93834BAB1CDC8DD700CB7C16 /* MyCoreLacation.h */,
-				93834BAC1CDC8DD700CB7C16 /* MyCoreLacation.m */,
 				933B72D11CD72AB9007219FB /* CenterView */,
 				933B72D51CD72AFA007219FB /* LeftView */,
 				933B72D61CD72B0C007219FB /* RightView */,
 				93834BAF1CDD0EBD00CB7C16 /* OtherView */,
+				9318434B1CDF0E16005DCC26 /* DataAndDelegate */,
 				933B72AA1CD72739007219FB /* Assets.xcassets */,
 				933B72AC1CD72739007219FB /* LaunchScreen.storyboard */,
 				933B72AF1CD72739007219FB /* Info.plist */,
 				933B729E1CD72739007219FB /* Supporting Files */,
-				93834B9D1CDB189400CB7C16 /* WeatherData.h */,
-				93834B9E1CDB189400CB7C16 /* WeatherData.m */,
-				93834BA01CDB2ED700CB7C16 /* LocalDataList.plist */,
-				93834BA21CDB2F2D00CB7C16 /* LocalData.h */,
-				93834BA31CDB2F2D00CB7C16 /* LocalData.m */,
-				93834BA51CDB83F800CB7C16 /* WeatherDelegate.h */,
-				93834BA61CDB83F800CB7C16 /* WeatherDelegate.m */,
 			);
 			path = LazyWeather;
 			sourceTree = "<group>";
@@ -263,6 +271,8 @@
 				93834BB11CDD0F1700CB7C16 /* SetterTableViewController.m */,
 				93C68E371CDE22DB00A6DB15 /* WeatherScrollView.h */,
 				93C68E381CDE22DB00A6DB15 /* WeatherScrollView.m */,
+				931843481CDEF9E6005DCC26 /* CitysTableViewController.h */,
+				931843491CDEF9E6005DCC26 /* CitysTableViewController.m */,
 			);
 			name = OtherView;
 			sourceTree = "<group>";
@@ -381,7 +391,6 @@
 				933B72EA1CD73192007219FB /* FirstCollectionCell.xib in Resources */,
 				933B72AE1CD72739007219FB /* LaunchScreen.storyboard in Resources */,
 				933B72AB1CD72739007219FB /* Assets.xcassets in Resources */,
-				93834BA11CDB2ED700CB7C16 /* LocalDataList.plist in Resources */,
 				933B72A91CD72739007219FB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +476,7 @@
 				933B72E91CD73192007219FB /* FirstCollectionCell.m in Sources */,
 				933B72D91CD72B4C007219FB /* LeftViewTableViewController.m in Sources */,
 				93834BA71CDB83F800CB7C16 /* WeatherDelegate.m in Sources */,
+				9318434A1CDEF9E6005DCC26 /* CitysTableViewController.m in Sources */,
 				93834BAD1CDC8DD700CB7C16 /* MyCoreLacation.m in Sources */,
 				93834BB21CDD0F1700CB7C16 /* SetterTableViewController.m in Sources */,
 				933B72A01CD72739007219FB /* main.m in Sources */,

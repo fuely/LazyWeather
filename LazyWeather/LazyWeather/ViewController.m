@@ -14,6 +14,7 @@
 #import "LocalData.h"
 #import "WeatherDelegate.h"
 #import "MyCoreLacation.h"
+#import "MJRefresh.h"
 
 @interface ViewController ()
 @property (nonatomic,strong) CLLocationManager *locationManager;
@@ -35,40 +36,27 @@ static NSString * const reuseIdentifier = @"FirstCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    MyCoreLacation *mylocation = [[MyCoreLacation alloc]init];
-//    [mylocation myLacationManager];
-//    
-//    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-//    [geocoder reverseGeocodeLocation:mylocation.currLocation
-//                   completionHandler:^(NSArray *placemarks, NSError *error) {
-//                       
-//                       if ([placemarks count] > 0) {
-//                           
-//                           CLPlacemark *placemark = placemarks[0];
-//                           
-//                           
-//                           NSString *city = [NSString stringWithFormat:@"%@,%@,%@,%@,%@",placemark.administrativeArea,placemark.locality,placemark.addressDictionary,placemark.name,placemark.country];
-//                           city = city == nil ? @"": city;
-//                           NSLog(@"%@",city);
-//                           
-//                       }
-//                       
-//                   }];
-//    
+       
     //定位服务初始化并弹出用户授权对话框
     _locationManager = [[CLLocationManager alloc] init];
     [_locationManager requestWhenInUseAuthorization];
     [_locationManager requestAlwaysAuthorization];
     
+    //查询网络数据
+    WeatherData *weatherData = [[WeatherData alloc]init];
+    [weatherData startRequest];
+    
+    //下拉刷新
+    _mCenterCollectionCtr.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weatherData startRequest];
+        [_mCenterCollectionCtr.mj_header endRefreshing];
+    }];
+    
     //设置_mCenterCollectionCtr代理,加载cell
     _mCenterCollectionCtr.delegate = self;
     _mCenterCollectionCtr.dataSource = self;
     [self backgroundImg];
-//    //查询网络数据
-//    WeatherData *weatherData = [[WeatherData alloc]init];
-//    [weatherData startRequest];
-    
+
     //左右页面初始化
     [self addLeftViewwithRightView];
     

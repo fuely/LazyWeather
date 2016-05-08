@@ -87,4 +87,11 @@
     
 }
 
+- (NSDictionary *) readAllCitysDictionary
+{
+    LocalData *localData = [LocalData sharedManager];
+    NSDictionary *cityDic =(NSDictionary *)[localData readDataWithArrayAtIndex:4];
+    return cityDic;
+}
+
 @end

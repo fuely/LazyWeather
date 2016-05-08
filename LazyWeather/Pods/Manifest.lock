@@ -15,13 +15,16 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - JVFloatingDrawer (0.1.0)
+  - MJRefresh (3.1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - JVFloatingDrawer
+  - MJRefresh
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   JVFloatingDrawer: 4782b1df21411aef2c1818f3b346cace02cc2e24
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
 
 COCOAPODS: 0.39.0
