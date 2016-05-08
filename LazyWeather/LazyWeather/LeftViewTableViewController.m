@@ -9,6 +9,7 @@
 #import "LeftViewTableViewController.h"
 #import "LeftViewTableViewCell.h"
 #import "WeatherDelegate.h"
+#import "WeatherScrollView.h"
 
 @interface LeftViewTableViewController ()
 
@@ -25,6 +26,7 @@
     UIColor *color2;
     UIColor *color3;
     UIColor *color4;
+    UIColor *backColor;
     NSMutableArray *dicDay;
     NSMutableArray *strWeather;
     NSMutableArray *temp;
@@ -114,7 +116,7 @@
 - (UIImage*) createImageWithColor: (UIColor*) color
 
 {
-    
+    backColor = color;
     CGRect rect=CGRectMake(0, 0, 1, 1);
     
     UIGraphicsBeginImageContext(rect.size);
@@ -139,7 +141,7 @@
     color1= [UIColor colorWithRed:244.0/255 green:222.0/255 blue:41.0/255 alpha:1];
     color2= [UIColor colorWithRed:147.0/255 green:224.0/255 blue:255.0/255 alpha:1];
     color3= [UIColor colorWithRed:92.0/255 green:167.0/255 blue:186.0/255 alpha:1];
-    color4= [UIColor colorWithRed:179.0/255 green:197.0/255 blue:135.0/255 alpha:1];
+    color4= [UIColor colorWithRed:179.0/255 green:230.0/255 blue:135.0/255 alpha:1];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -148,49 +150,24 @@
 }
 
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    WeatherScrollView *scrollVC = [[WeatherScrollView alloc]init];
+        [self presentViewController:scrollVC animated:YES completion:^{
+            scrollVC.pageControl.currentPage = indexPath.row;
+            [scrollVC.scrollView setContentOffset:CGPointMake(scrollVC.pageControl.currentPage*375, 0) animated:YES];
+        }];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+//视图出现时运行
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [UIView beginAnimations:@"moveView" context:nil];
+    [UIView setAnimationDuration:0.30f];
+    self.view.frame = CGRectMake(-40, 0, 375, 667);
+    [UIView commitAnimations];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

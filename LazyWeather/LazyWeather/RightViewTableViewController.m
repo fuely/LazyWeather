@@ -29,11 +29,21 @@
     img1Array = [[NSArray alloc]initWithObjects:@"reminder",@"settings_normal",@"contact", nil];
     img2Array = [[NSArray alloc]initWithObjects:@"addcity",@"location_icon",@"city", nil];
     self.view.backgroundColor = [UIColor blackColor];
+    self.view.frame = CGRectMake(80, 0, 375, 667);
     
     
     
 }
 
+//视图出现时运行
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [UIView beginAnimations:@"moveView" context:nil];
+    [UIView setAnimationDuration:0.30f];
+    self.view.frame = CGRectMake(80, 0, 375, 667);
+    [UIView commitAnimations];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -82,7 +92,24 @@
         return nil;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+                [self performSegueWithIdentifier:@"RightToAlerts" sender:nil];
+                break;
+            case 1:
+                [self performSegueWithIdentifier:@"RightToSet" sender:nil];
+                break;
+            case 2:
+                [self performSegueWithIdentifier:@"RightToSupport" sender:nil];
+                break;
+            default:
+                break;
+        }
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

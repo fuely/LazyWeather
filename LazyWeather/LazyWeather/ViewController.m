@@ -24,6 +24,7 @@
 @implementation ViewController
 {
     CGFloat pianyi;
+    UIPanGestureRecognizer *gesture1;
     UITapGestureRecognizer *gesture2;
     UIButton *heartBtn;
     UIColor *backColor;
@@ -64,7 +65,7 @@ static NSString * const reuseIdentifier = @"FirstCell";
     _mCenterCollectionCtr.delegate = self;
     _mCenterCollectionCtr.dataSource = self;
     [self backgroundImg];
-    //查询网络数据
+//    //查询网络数据
 //    WeatherData *weatherData = [[WeatherData alloc]init];
 //    [weatherData startRequest];
     
@@ -107,6 +108,8 @@ static NSString * const reuseIdentifier = @"FirstCell";
         case 0:
         {
             firstCell.backgroundColor = backColor;
+            [firstCell.centerToolBar.items[0] setAction:@selector(toLeftView)];
+            [firstCell.centerToolBar.items[4] setAction:@selector(toRightView)];
             cell = firstCell;
         
         }
@@ -140,25 +143,18 @@ static NSString * const reuseIdentifier = @"FirstCell";
     return cell;
 }
 
-- (void)setBtnClick
-{
-    [self performSegueWithIdentifier:@"CenterToSetPage" sender:nil];
-}
-
-#pragma mark - UICollectionViewDelegate
-
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     CGSize size;
     switch (indexPath.row) {
         case 0:
-            size = CGSizeMake(375, 875);
+            size = CGSizeMake(380, 875);
             break;
         case 1:
-            size = CGSizeMake(375, 667);
+            size = CGSizeMake(380, 667);
             break;
         default:
-            size = CGSizeMake(375, 667);
+            size = CGSizeMake(380, 667);
             break;
     }
     
@@ -182,7 +178,7 @@ static NSString * const reuseIdentifier = @"FirstCell";
 - (void)addLeftViewwithRightView
 {
     //滑动手势初始化设置
-    UIPanGestureRecognizer *gesture1 = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(gestures1:)];
+    gesture1 = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(gestures1:)];
     [self.view addGestureRecognizer:gesture1];
     
     //点击手势初始化设置
@@ -206,6 +202,31 @@ static NSString * const reuseIdentifier = @"FirstCell";
     pianyi = 0.0f;
     [gesture setEnabled:NO];
 }
+//点击按钮出行左页面
+- (void)toLeftView
+{
+    pianyi = 240;
+    if(pianyi > 0)
+        [self.rightDrawerViewController.view setHidden:YES];
+    if(pianyi < 0)
+        [self.rightDrawerViewController.view setHidden:NO];
+    [self translation:240];
+    [gesture2 setEnabled:YES];
+
+}
+//点击按钮出行右页面
+- (void)toRightView
+{
+    pianyi = -240;
+    if(pianyi > 0)
+        [self.rightDrawerViewController.view setHidden:YES];
+    if(pianyi < 0)
+        [self.rightDrawerViewController.view setHidden:NO];
+    [self translation:-240];
+    [gesture2 setEnabled:YES];
+
+
+}
 
 //滑动页面事件具体实现
 - (void)gestures1:(UIPanGestureRecognizer *)gesture
@@ -213,15 +234,23 @@ static NSString * const reuseIdentifier = @"FirstCell";
     if(gesture.state == UIGestureRecognizerStateBegan){
         if(pianyi == 0){
             if([gesture translationInView:gesture.view].x > 0)
+            {
                 [self.rightDrawerViewController.view setHidden:YES];
+                [self.leftDrawerViewController.view setHidden:NO];
+            }
             if([gesture translationInView:gesture.view].x < 0)
+            {
                 [self.rightDrawerViewController.view setHidden:NO];
+                [self.leftDrawerViewController.view setHidden:YES];
+            }
         }
     }
     
     if(gesture.state == UIGestureRecognizerStateChanged){
         if(pianyi + [gesture translationInView:gesture.view].x > 0)
+        {
             [self.rightDrawerViewController.view setHidden:YES];
+        }
         if(pianyi + [gesture translationInView:gesture.view].x < 0)
             [self.rightDrawerViewController.view setHidden:NO];
         _mCenterCollectionCtr.transform = CGAffineTransformMakeTranslation(pianyi+[gesture translationInView:gesture.view].x,0);
@@ -270,6 +299,12 @@ static NSString * const reuseIdentifier = @"FirstCell";
     }
 }
 
+//跳转设置页面
+- (void)setBtnClick
+{
+    [self performSegueWithIdentifier:@"CenterToSetPage" sender:nil];
+}
+
 //动画实现
 -(void)translation:(CGFloat)x
 {
@@ -280,7 +315,7 @@ static NSString * const reuseIdentifier = @"FirstCell";
     [UIView commitAnimations];
     
 }
-
+#pragma mark - 背景实现
 //背景实现
 - (void)backgroundImg
 {

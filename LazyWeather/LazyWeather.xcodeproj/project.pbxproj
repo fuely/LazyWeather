@@ -30,6 +30,7 @@
 		93834BA71CDB83F800CB7C16 /* WeatherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BA61CDB83F800CB7C16 /* WeatherDelegate.m */; };
 		93834BAD1CDC8DD700CB7C16 /* MyCoreLacation.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BAC1CDC8DD700CB7C16 /* MyCoreLacation.m */; };
 		93834BB21CDD0F1700CB7C16 /* SetterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BB11CDD0F1700CB7C16 /* SetterTableViewController.m */; };
+		93C68E391CDE22DB00A6DB15 /* WeatherScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C68E381CDE22DB00A6DB15 /* WeatherScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,8 @@
 		93834BAC1CDC8DD700CB7C16 /* MyCoreLacation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCoreLacation.m; sourceTree = "<group>"; };
 		93834BB01CDD0F1700CB7C16 /* SetterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetterTableViewController.h; sourceTree = "<group>"; };
 		93834BB11CDD0F1700CB7C16 /* SetterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetterTableViewController.m; sourceTree = "<group>"; };
+		93C68E371CDE22DB00A6DB15 /* WeatherScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherScrollView.h; sourceTree = "<group>"; };
+		93C68E381CDE22DB00A6DB15 /* WeatherScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +261,8 @@
 			children = (
 				93834BB01CDD0F1700CB7C16 /* SetterTableViewController.h */,
 				93834BB11CDD0F1700CB7C16 /* SetterTableViewController.m */,
+				93C68E371CDE22DB00A6DB15 /* WeatherScrollView.h */,
+				93C68E381CDE22DB00A6DB15 /* WeatherScrollView.m */,
 			);
 			name = OtherView;
 			sourceTree = "<group>";
@@ -458,6 +463,7 @@
 				933B72A61CD72739007219FB /* ViewController.m in Sources */,
 				933B72A31CD72739007219FB /* AppDelegate.m in Sources */,
 				933B72ED1CD88D7C007219FB /* SecondCollectionCell.m in Sources */,
+				93C68E391CDE22DB00A6DB15 /* WeatherScrollView.m in Sources */,
 				933B72E91CD73192007219FB /* FirstCollectionCell.m in Sources */,
 				933B72D91CD72B4C007219FB /* LeftViewTableViewController.m in Sources */,
 				93834BA71CDB83F800CB7C16 /* WeatherDelegate.m in Sources */,
