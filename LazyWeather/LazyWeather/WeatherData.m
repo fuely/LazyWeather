@@ -9,15 +9,17 @@
 #import "WeatherData.h"
 #import "AFNetworking.h"
 #import "LocalData.h"
+#import "WeatherDelegate.h"
 
 @implementation WeatherData
 
 - (void)startRequest
 {
-    
-    if(_city == nil)
+    WeatherDelegate *cityDelegate = [[WeatherDelegate alloc]init];
+    NSDictionary *cityDic = (NSDictionary *)[cityDelegate readWeatherArrayAtIndex:6];
+    _cityid = [cityDic valueForKey:@"weaid"];
+    if(_cityid == nil)
     {
-        _city = @"厦门";
         _cityid = @"147";
         
     }

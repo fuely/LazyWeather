@@ -13,44 +13,53 @@
 - (void)myLacationManager
 {
     _locationManager = [[CLLocationManager alloc]init];
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    _locationManager.distanceFilter = 1000.0f;
-    
-    [_locationManager requestWhenInUseAuthorization];
-    [_locationManager requestAlwaysAuthorization];
-    if ([CLLocationManager locationServicesEnabled]) {
-        [_locationManager startUpdatingLocation]; // 开始更新位置
+    //如果没有授权则请求用户授权
+    if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined){
+        [_locationManager requestWhenInUseAuthorization];
+    }else if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorizedWhenInUse){
+        //设置代理
+        _locationManager.delegate=self;
+        //设置定位精度
+        _locationManager.desiredAccuracy=kCLLocationAccuracyBest;
+        //定位频率,每隔多少米定位一次
+        // CLLocationDistance distance=10.0;//十米定位一次
+        _locationManager.distanceFilter=kCLDistanceFilterNone;
+        //启动跟踪定位
+        [_locationManager startUpdatingLocation];
     }
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder reverseGeocodeLocation:_currLocation
-                   completionHandler:^(NSArray *placemarks, NSError *error) {
-                       
-                       if ([placemarks count] > 0) {
-                           
-                           CLPlacemark *placemark = placemarks[0];
-                           
-                           
-                           NSString *city = [NSString stringWithFormat:@"%@,%@,%@,%@,%@",placemark.administrativeArea,placemark.locality,placemark.addressDictionary,placemark.name,placemark.country];
-                           city = city == nil ? @"": city;
-                           NSLog(@"%@",city);
-                           
-                       }
-                       
-                   }];
 }
 
 #pragma mark Core Location委托方法用于实现位置的更新
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     _currLocation = [locations lastObject];
-    NSLog(@"%@",_currLocation);
+    
+    if(_currLocation.horizontalAccuracy > 0)
+    {
+        NSLog(@"当前位置：%.0f,%.0f +/- %.0f meters",_currLocation.coordinate.longitude,
+              _currLocation.coordinate.latitude,
+              _currLocation.horizontalAccuracy);
+    }
+//     [_locationManager stopUpdatingLocation];
+    
     
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"error: %@",error);
+    if(error.code == kCLErrorLocationUnknown)
+    {
+        NSLog(@"Currently unable to retrieve location.");
+    }
+    else if(error.code == kCLErrorNetwork)
+    {
+        NSLog(@"Network used to retrieve location is unavailable.");
+    }
+    else if(error.code == kCLErrorDenied)
+    {
+        NSLog(@"Permission to retrieve location is denied.");
+        [manager stopUpdatingLocation];
+    }
 }
 /** 定位服务状态改变时调用*/
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status

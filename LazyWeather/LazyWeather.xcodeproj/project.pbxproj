@@ -30,6 +30,8 @@
 		93834BA71CDB83F800CB7C16 /* WeatherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BA61CDB83F800CB7C16 /* WeatherDelegate.m */; };
 		93834BAD1CDC8DD700CB7C16 /* MyCoreLacation.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BAC1CDC8DD700CB7C16 /* MyCoreLacation.m */; };
 		93834BB21CDD0F1700CB7C16 /* SetterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93834BB11CDD0F1700CB7C16 /* SetterTableViewController.m */; };
+		93B25F391CE0631900CF7C68 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93B25F381CE0631900CF7C68 /* CoreLocation.framework */; };
+		93B25F3B1CE06E7E00CF7C68 /* LocalDataList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93B25F3A1CE06E7E00CF7C68 /* LocalDataList.plist */; };
 		93C68E391CDE22DB00A6DB15 /* WeatherScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C68E381CDE22DB00A6DB15 /* WeatherScrollView.m */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +99,8 @@
 		93834BAC1CDC8DD700CB7C16 /* MyCoreLacation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCoreLacation.m; sourceTree = "<group>"; };
 		93834BB01CDD0F1700CB7C16 /* SetterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetterTableViewController.h; sourceTree = "<group>"; };
 		93834BB11CDD0F1700CB7C16 /* SetterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetterTableViewController.m; sourceTree = "<group>"; };
+		93B25F381CE0631900CF7C68 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		93B25F3A1CE06E7E00CF7C68 /* LocalDataList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LocalDataList.plist; sourceTree = "<group>"; };
 		93C68E371CDE22DB00A6DB15 /* WeatherScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherScrollView.h; sourceTree = "<group>"; };
 		93C68E381CDE22DB00A6DB15 /* WeatherScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93B25F391CE0631900CF7C68 /* CoreLocation.framework in Frameworks */,
 				167A3FB27381F15E1B293CDF /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,6 +135,7 @@
 		0188BD872B6C05F26A8AEAC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93B25F381CE0631900CF7C68 /* CoreLocation.framework */,
 				5A8524AEA6DE5B9093A7147A /* libPods.a */,
 			);
 			name = Frameworks;
@@ -206,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				933B729F1CD72739007219FB /* main.m */,
+				93B25F3A1CE06E7E00CF7C68 /* LocalDataList.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -389,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				933B72EA1CD73192007219FB /* FirstCollectionCell.xib in Resources */,
+				93B25F3B1CE06E7E00CF7C68 /* LocalDataList.plist in Resources */,
 				933B72AE1CD72739007219FB /* LaunchScreen.storyboard in Resources */,
 				933B72AB1CD72739007219FB /* Assets.xcassets in Resources */,
 				933B72A91CD72739007219FB /* Main.storyboard in Resources */,

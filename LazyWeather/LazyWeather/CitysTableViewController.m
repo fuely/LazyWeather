@@ -8,6 +8,8 @@
 
 #import "CitysTableViewController.h"
 #import "WeatherDelegate.h"
+#import "LocalData.h"
+#import "WeatherData.h"
 
 @interface CitysTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *fieldText;
@@ -17,12 +19,19 @@
 @implementation CitysTableViewController
 {
     NSDictionary *citysDic;
+    LocalData *saveData;
+    NSArray *cityids;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    saveData = [LocalData sharedManager];
+    
     WeatherDelegate *cityDelegate = [[WeatherDelegate alloc]init];
     citysDic = [cityDelegate readAllCitysDictionary];
+    
+    cityids = [[NSArray alloc]initWithObjects:@"147",@"1",@"36",@"94",@"399",@"248",@"59",@"384",@"165",@"169",@"364",@"77",@"446",@"23",@"105",@"363", nil];
     //设置文本框的边框 样式
     _fieldText.borderStyle = UITextBorderStyleRoundedRect;
     _fieldText.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"search_b"]];
@@ -58,21 +67,38 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return cityids.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CityCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor blackColor];
-    NSDictionary *city = [citysDic valueForKey:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
-    cell.textLabel.text = [city valueForKey:@"citynm"];
+    if (indexPath.row !=0) {
+            NSDictionary *citynm = [citysDic valueForKey:cityids[indexPath.row-1]];
+            cell.textLabel.text = [citynm valueForKey:@"citynm"];
+    }
     if (indexPath.row == 0) {
         cell.textLabel.text = @"自动定位";
     }
         cell.textLabel.textColor = [UIColor grayColor];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row !=0) {
+        NSArray *cityArray = [citysDic valueForKey:cityids[indexPath.row-1]];
+        [saveData saveDataWithArray:cityArray dataAtIndex:6];
+        //查询网络数据
+        WeatherData *weatherData = [[WeatherData alloc]init];
+        [weatherData startRequest];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"update" object:nil];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 - (IBAction)backClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

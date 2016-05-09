@@ -49,6 +49,8 @@ static NSString * const reuseIdentifier = @"FirstCell";
     //下拉刷新
     _mCenterCollectionCtr.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weatherData startRequest];
+        //左右页面初始化
+        [self addLeftViewwithRightView];
         [_mCenterCollectionCtr.mj_header endRefreshing];
     }];
     
@@ -61,6 +63,8 @@ static NSString * const reuseIdentifier = @"FirstCell";
     [self addLeftViewwithRightView];
     
      backColor = [UIColor colorWithRed:0 green:arc4random()%200/255.0 blue:arc4random()%255/255.0 alpha:0.5];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectionView:cellForItemAtIndexPath:) name:@"update" object:nil];
     
 }
 

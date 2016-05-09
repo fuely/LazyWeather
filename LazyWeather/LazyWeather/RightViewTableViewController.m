@@ -8,6 +8,7 @@
 
 #import "RightViewTableViewController.h"
 #import "RightViewTableViewCell.h"
+#import "MyCoreLacation.h"
 
 @interface RightViewTableViewController ()
 
@@ -32,7 +33,8 @@
     self.view.backgroundColor = [UIColor blackColor];
     self.view.frame = CGRectMake(80, 0, 375, 667);
     
-    
+    MyCoreLacation *locationManager = [[MyCoreLacation alloc]init];
+    [locationManager myLacationManager];
     
 }
 
