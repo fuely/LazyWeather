@@ -58,7 +58,11 @@
         lbaqi.text = weatherDelegate.aqiremark;
         
         UILabel *lbwind = [[UILabel alloc]initWithFrame:CGRectMake(i*375+40, 230, 240, 40)];
-        lbwind.text = [NSString stringWithFormat:@"%@ %@",[weatherArrray[i] valueForKey:@"wind"],[weatherArrray[3] valueForKey:@"winp"]];
+        if (i==0) {
+            lbwind.text = [NSString stringWithFormat:@"%@ %@",[yesterday valueForKey:@"wind"],[yesterday valueForKey:@"winp"]];
+        }else{
+        lbwind.text = [NSString stringWithFormat:@"%@ %@",[weatherArrray[i-1] valueForKey:@"wind"],[weatherArrray[i-1] valueForKey:@"winp"]];
+        }
         UILabel *lbsun = [[UILabel alloc]initWithFrame:CGRectMake(i*375+40, 250, 240, 40)];
         lbsun.text = @"日出05:30 日落18:40";
         
